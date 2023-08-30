@@ -8,7 +8,7 @@ pub struct Line {
 }
 
 impl Line {
-    fn new(start: Point, terminate: Point) -> Self {
+    pub fn new(start: Point, terminate: Point) -> Self {
         let k = {
             if start.x - start.y == 0.0 {
                 // Vertical line.
@@ -46,11 +46,11 @@ impl Line {
 }
 
 impl Entity for Line {
-    fn crossed(&self, line: &Ray) -> bool {
-        if self.k != Some(line.2) {
-            if self.max_point_x() > line.0.x
-                && line.0.y > self.min_point_y()
-                && line.0.y < self.max_point_y() {
+    fn crossed(&self, ray: &Ray) -> bool {
+        if self.k != Some(ray.2) {
+            if self.max_point_x() > ray.0.x
+                && ray.0.y > self.min_point_y()
+                && ray.0.y < self.max_point_y() {
                     true
                 } else { false }
         } else { false }    
