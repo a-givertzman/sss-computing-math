@@ -9,7 +9,7 @@ mod tests {
 
     #[test]
     fn test_crosse_line() {
-        let ray = Ray(Point::new(0.0, 7.0), Point::new(10.0, 7.0), 1.0 * 10E-6);
+        let ray = Ray(Point::new(0.0, 7.0), Point::new(10.0, 7.0));
         let line = Line::new(Point::new(5.0, 5.0), Point::new(5.0, 10.0));
         assert_eq!(line.crossed(&ray), true);
     }
