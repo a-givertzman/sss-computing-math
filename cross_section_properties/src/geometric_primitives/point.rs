@@ -4,7 +4,7 @@ pub struct Point {
 }
 
 impl Point {
-    fn new(x: f64, y: f64) -> Self {
+    pub fn new(x: f64, y: f64) -> Self {
         Point { x, y }
     }
 }
