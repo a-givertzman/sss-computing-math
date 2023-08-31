@@ -58,4 +58,4 @@ impl Entity for Line {
 
 }
 
-pub struct Ray(Point, Point, f64);
+pub struct Ray(pub Point, pub Point, pub f64);
