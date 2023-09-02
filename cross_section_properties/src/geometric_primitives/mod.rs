@@ -1,6 +1,8 @@
 mod entity;
 mod point;
 mod line;
+mod arc;
+mod utilities;
 
 
 #[cfg(test)]
