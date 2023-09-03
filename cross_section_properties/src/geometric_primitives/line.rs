@@ -33,12 +33,12 @@ impl Line {
 }
 
 impl Entity for Line {
-    fn crossed(&self, ray: &Ray) -> bool {
+    fn number_of_crossings_by_ray(&self, ray: &Ray) -> i32 {
         if self.max_point_x() > ray.0.x
             && ray.0.y > self.min_point_y()
             && ray.0.y < self.max_point_y() {
-                true
-        } else { false }
+                1
+        } else { 0 }
     }
 
 }

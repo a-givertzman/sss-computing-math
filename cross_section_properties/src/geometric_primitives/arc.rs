@@ -84,11 +84,11 @@ impl Arc {
 
 
 impl Entity for Arc {
-    fn crossed(&self, ray: &super::line::Ray) -> bool {
+    fn number_of_crossings_by_ray(&self, ray: &super::line::Ray) -> i32 {
         let mut res = 0;
         for line in self.lines.iter() {
-            res += line.crossed(&ray) as u32
+            res += line.number_of_crossings_by_ray(&ray)
         }
-        res > 0 && res % 2 == 1
+        res
     }
 }

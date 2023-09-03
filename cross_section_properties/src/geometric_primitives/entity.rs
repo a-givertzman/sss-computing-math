@@ -1,6 +1,6 @@
 use super::line::Ray;
 
 pub trait Entity {
-    fn crossed(&self, ray: &Ray) -> bool;
+    fn number_of_crossings_by_ray(&self, ray: &Ray) -> i32;
 
 }
