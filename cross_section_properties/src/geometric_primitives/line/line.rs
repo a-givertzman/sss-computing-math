@@ -1,5 +1,5 @@
-use super::point::Point;
-use super::entity::Entity;
+use crate::geometric_primitives::{point::Point, entity::Entity};
+
 
 pub struct Line {
     pub start: Point,

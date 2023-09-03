@@ -1,13 +1,13 @@
 use std::f64::consts;
 
-use crate::geometric_primitives::{point::Point, line::Line, entity::Entity, utilities::define_vector_angle};
+use crate::geometric_primitives::{point::Point, entity::Entity, utilities::define_vector_angle, line::line::{Ray, Line}};
 
 pub struct Arc {
     // Represents a geometric primitive, an arc.
     start: Point,
     terminate: Point,
     center_point: Point,
-    pub lines: Vec<Line>
+    lines: Vec<Line>
 }
 
 
@@ -79,7 +79,7 @@ impl Arc {
 
 
 impl Entity for Arc {
-    fn number_of_crossings_by_ray(&self, ray: &super::line::Ray) -> i32 {
+    fn number_of_crossings_by_ray(&self, ray: &Ray) -> i32 {
         let mut res = 0;
         for line in self.lines.iter() {
             res += line.number_of_crossings_by_ray(&ray)
