@@ -7,37 +7,42 @@ pub struct Arc {
     start: Point,
     terminate: Point,
     center_point: Point,
-    lines: Vec<Line>
+    pub lines: Vec<Line>
 }
 
 
 impl Arc {
     pub fn new(start: Point, terminate: Point, center_point: Point) -> Self {
-        Arc::approximate_by_line(start, terminate, center_point)
+        let mut arc = Arc { start, terminate, center_point, lines: vec![]};
+        arc.approximate_by_line();
+        arc
     }
 
-    fn approximate_by_line(start: Point, terminate: Point, center_point: Point) -> Arc {
+    fn approximate_by_line(&mut self) {
         // Approximate an arc by lines.
-        let mut arc = Arc { start, terminate, center_point, lines: vec![]};
+        
         let mut lines: Vec<Line> = vec![];
         let delta = (3.0 * consts::PI) / 180.0;
-        let terminate_angle = arc.terminate_angle();
-        let mut phi = arc.start_angle();
-        let mut prev_point = arc.start;
-        let arc_radius = arc.arc_radius();
-        while phi < terminate_angle && phi >= terminate_angle - delta {
+        let terminate_angle = self.terminate_angle();
+        let mut phi = self.start_angle();
+        let mut prev_point = self.start;
+        let arc_radius = self.arc_radius();
+        while !(phi < terminate_angle && phi >= terminate_angle - delta) {
+            phi += delta;
             if phi > consts::PI * 2.0 {
                 phi = phi - consts::PI * 2.0;
-            } else { phi += delta; }
-            let x = arc.start.x + arc_radius * phi.cos();
-            let y = arc.start.y + arc_radius * phi.sin();
+            }
+            let x = arc_radius * phi.cos();
+            let y = arc_radius * phi.sin();
             let next_point = Point::new(x, y);
             let line = Line::new(prev_point, next_point);
             lines.push(line);
             prev_point = next_point;
         }
-        arc.lines = lines;
-        arc
+        let line = Line::new(prev_point, self.terminate);
+        lines.push(line);
+        self.lines = lines;
+
 
     }
 
@@ -50,16 +55,6 @@ impl Arc {
         let y2 = self.start.y;
         ((x2 - x1).powi(2) + (y2 - y1).powi(2)).powf(0.5)
 
-    }
-
-    pub(crate) fn arc_angle(&self) -> f64 {
-        // Arc angle.
-        let x1 = self.start.x;
-        let x2 = self.terminate.x;
-        let y1 = self.start.y;
-        let y2 = self.terminate.y;
-        ((x1 * x2 + y1 * y2) / ((x1 * x1 + y1 * y1).powf(0.5) * (x2 * x2 + y2 * y2).powf(0.5))).acos()
-        
     }
 
     pub(crate) fn start_angle(&self) -> f64 {
