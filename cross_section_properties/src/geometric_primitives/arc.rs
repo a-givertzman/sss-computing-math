@@ -41,7 +41,7 @@ impl Arc {
 
     }
 
-    fn arc_radius(&self) -> f64 {
+    pub(crate) fn arc_radius(&self) -> f64 {
         // Arc radius.
         // |AB|² = (y2 - y1)² + (x2 - x1)².
         let x1 = self.center_point.x;
@@ -52,7 +52,7 @@ impl Arc {
 
     }
 
-    fn arc_angle(&self) -> f64 {
+    pub(crate) fn arc_angle(&self) -> f64 {
         // Arc angle.
         let x1 = self.start.x;
         let x2 = self.terminate.x;
@@ -62,7 +62,7 @@ impl Arc {
         
     }
 
-    fn start_angle(&self) -> f64 {
+    pub(crate) fn start_angle(&self) -> f64 {
         // Arc start angle.
         let x1 = self.center_point.x + self.arc_radius();
         let x2 = self.start.x;
@@ -71,7 +71,7 @@ impl Arc {
         define_vector_angle(x1, x2, y1, y2)
     }
 
-    fn terminate_angle(&self) -> f64 {
+    pub(crate) fn terminate_angle(&self) -> f64 {
         // Arc terminate  angle.
         let x1 = self.center_point.x + self.arc_radius();
         let x2 = self.terminate.x;
