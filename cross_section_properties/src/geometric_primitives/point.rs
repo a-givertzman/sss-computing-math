@@ -1,12 +1,12 @@
 #[derive(Clone, Copy)]
-pub struct Point {
-    pub x: f64,
+pub struct Point2D {
     pub y: f64,
+    pub z: f64,
 }
 
 
-impl Point {
-    pub fn new(x: f64, y: f64) -> Self {
-        Point { x, y }
+impl Point2D {
+    pub fn new(y: f64, z: f64) -> Self {
+        Point2D { y, z }
     }
 }

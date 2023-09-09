@@ -1,18 +1,20 @@
 use std::f64::consts;
 
-use crate::geometric_primitives::{point::Point, entity::Entity, utilities::define_vector_angle, line::line::{Ray, Line}};
+use crate::geometric_primitives::{point::Point2D, entity::Entity,
+    utilities::define_vector_angle, line::line::{Ray, Line}};
 
 pub struct Arc {
     // Represents a geometric primitive, an arc.
-    start: Point,
-    terminate: Point,
-    center_point: Point,
+
+    start: Point2D,
+    terminate: Point2D,
+    center_point: Point2D,
     lines: Vec<Line>
 }
 
 
 impl Arc {
-    pub fn new(start: Point, terminate: Point, center_point: Point) -> Self {
+    pub fn new(start: Point2D, terminate: Point2D, center_point: Point2D) -> Self {
         let mut arc = Arc { start, terminate, center_point, lines: vec![]};
         arc.approximate_by_line();
         arc
@@ -32,9 +34,9 @@ impl Arc {
             if phi > consts::PI * 2.0 {
                 phi = phi - consts::PI * 2.0;
             }
-            let x = arc_radius * phi.cos();
-            let y = arc_radius * phi.sin();
-            let next_point = Point::new(x, y);
+            let y = arc_radius * phi.cos();
+            let z = arc_radius * phi.sin();
+            let next_point = Point2D::new(y, z);
             let line = Line::new(prev_point, next_point);
             lines.push(line);
             prev_point = next_point;
@@ -48,31 +50,34 @@ impl Arc {
 
     pub(crate) fn arc_radius(&self) -> f64 {
         // Arc radius.
-        // |AB|² = (y2 - y1)² + (x2 - x1)².
-        let x1 = self.center_point.x;
-        let x2 = self.start.x;
+        // |AB|² = (z2 - z1)² + (y2 - y1)².
+
         let y1 = self.center_point.y;
         let y2 = self.start.y;
-        ((x2 - x1).powi(2) + (y2 - y1).powi(2)).powf(0.5)
+        let z1 = self.center_point.z;
+        let z2 = self.start.z;
+        ((y2 - y1).powi(2) + (z2 - z1).powi(2)).powf(0.5)
 
     }
 
     pub(crate) fn start_angle(&self) -> f64 {
         // Arc start angle.
-        let x1 = self.center_point.x + self.arc_radius();
-        let x2 = self.start.x;
-        let y1 = 0.0;
+
+        let y1 = self.center_point.y + self.arc_radius();
         let y2 = self.start.y;
-        define_vector_angle(x1, x2, y1, y2)
+        let z1 = 0.0;
+        let z2 = self.start.z;
+        define_vector_angle(y1, y2, z1, z2)
     }
 
     pub(crate) fn terminate_angle(&self) -> f64 {
         // Arc terminate  angle.
-        let x1 = self.center_point.x + self.arc_radius();
-        let x2 = self.terminate.x;
-        let y1 = 0.0;
+
+        let y1 = self.center_point.y + self.arc_radius();
         let y2 = self.terminate.y;
-        define_vector_angle(x1, x2, y1, y2)
+        let z1 = 0.0;
+        let z2 = self.terminate.z;
+        define_vector_angle(y1, y2, z1, z2)
 
     }
 }
