@@ -16,11 +16,16 @@ impl Input {
 
     pub fn run(&self) -> Result<HashMap<i32, CrossSection>, CSVError>{
         let mut cross_sections = HashMap::new();
-        let mut reader = Reader::from_path(&self.file_path)?;
-        for result in reader.deserialize::<CrossSection>() {
-            let cross_section = result?;
-            cross_sections.insert(cross_section.id, cross_section);
+        match Reader::from_path(&self.file_path) {
+            Ok(reader) => {
+                debug!("lines: {:?} read", reader.len());
+                trace!("reader: {:?}", reader);
+                Ok(reader)
+            },
+            Err(err) => {
+                warn!("Input.run | error: {:?}",err)
+                Err(err)
+            }
         }
-        Ok(cross_sections)
     }
 }

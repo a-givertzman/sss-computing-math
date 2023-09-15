@@ -12,6 +12,14 @@ pub struct Arc {
     lines: Vec<Line>
 }
 
+pub trait ToLines {
+    fn toLines();
+} 
+impl ToLines for Arc {
+    fn toLines() {
+        todo!()
+    }
+}
 
 impl Arc {
     pub fn new(start: Point2D, terminate: Point2D, center_point: Point2D) -> Self {

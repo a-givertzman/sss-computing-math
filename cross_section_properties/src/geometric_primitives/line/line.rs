@@ -10,7 +10,7 @@ impl Line {
     pub fn new(start: Point2D, terminate: Point2D) -> Self {
         Line { start, terminate }
     }
-
+    
     fn max_point_y(&self) -> f64 {
         if self.start.y > self.terminate.y {
             self.start.y

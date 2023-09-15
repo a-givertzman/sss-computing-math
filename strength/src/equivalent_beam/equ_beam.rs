@@ -18,7 +18,19 @@ impl EquBeam {
     }
 
     pub fn run(&mut self) -> Result<(), CSVError>{
-        self.cross_sections = self.input.run()?;
+        self.cross_sections = match self.input.run() {
+            Ok(lines) => {
+                for result in reader.deserialize::<CrossSection>() {
+                    let cross_section = result?;
+                    cross_sections.insert(cross_section.id, cross_section);
+                }
+                Ok(cross_sections)
+            },
+            Err(err) => {
+                warn!("EquBeam.run | error: {:?}",err)
+                Err(err)
+            }
+        };
         Ok(())
     }
 }
