@@ -1,3 +1,7 @@
+use serde::Deserialize;
+
+
+#[derive(Deserialize, Debug)]
 pub struct CrossSection {
     id: i32,
     I_z: f64,
