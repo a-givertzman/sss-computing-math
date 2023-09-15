@@ -3,7 +3,7 @@ use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
 pub struct CrossSection {
-    id: i32,
+    pub id: i32,
     I_z: f64,
     I_y: f64,
     z_up: f64,

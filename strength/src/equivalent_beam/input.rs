@@ -1,6 +1,8 @@
-use std::path::Path;
 use csv::Reader;
+use csv::Error as CSVError;
+use std::collections::HashMap;
 use super::cross_section::CrossSection;
+
 
 pub struct Input {
     file_path: String,
@@ -12,13 +14,13 @@ impl Input {
         Input { file_path }
     }
 
-    pub fn run(&self) {
-        let file_path = Path::new(&self.file_path);
-        let mut reader = Reader::from_path(&self.file_path).unwrap();
-        for result in reader.records() {
-            let record = result.unwrap();
-            println!("{:?}", record);
+    pub fn run(&self) -> Result<HashMap<i32, CrossSection>, CSVError>{
+        let mut cross_sections = HashMap::new();
+        let mut reader = Reader::from_path(&self.file_path)?;
+        for result in reader.deserialize::<CrossSection>() {
+            let cross_section = result?;
+            cross_sections.insert(cross_section.id, cross_section);
         }
-
+        Ok(cross_sections)
     }
 }
