@@ -3,7 +3,7 @@ use csv::Error as CSVError;
 use log::{warn, debug};
 
 
-use super::{input::Input, cross_section::cross_section::CrossSection};
+use super::{input::Input, cross_section::cross_section::CrossSection, ship::ship::Ship};
 
 
 
@@ -28,6 +28,9 @@ impl PreData {
                     let cross_section = result?;
                     cross_sections.insert(cross_section.id, cross_section);
                 }
+                if cross_sections.len() == 0 {
+                    todo!("cros_sections не должен быть пустым")
+                }
                 debug!("PreData.cross_sections | Cross sections have been applied successfully: {:#?}", cross_sections);
                 Ok(cross_sections)
             },
@@ -36,5 +39,26 @@ impl PreData {
                 Err(err)
             }
         }
+    }
+
+    pub fn ship(&self) -> Result<Ship, String> {
+        let input = Input::new(&self.ship_input_file);
+        match input.run() {
+            Ok(mut parser) => {               
+                let mut result = parser.deserialize::<Ship>();
+                if let Some(record) = result.next() {
+                    let ship = record.map_err(|err| { err.to_string() })?;
+                    debug!("PreData.ship | The ship hase been created successfully{:#?}", ship);
+                    return Ok(ship);
+                } else {
+                    warn!("PreData.ship | error: Expected one record but got none");
+                    Err("Expected at least one record but got none".to_owned())
+                }
+            },
+            Err(err) => {
+                warn!("PreData.ship | error: {:?}",err);
+                Err(err.to_string())
+            }
+        }   
     }
 }
