@@ -12,11 +12,11 @@ impl Ship {
     pub fn new(file_path: String) -> Result<Self, String> {
         match Ship::from_csv(&file_path) {
             Ok(ship) => {
-                debug!("Ship::new | The ship hase been created successfully{:#?}", ship);
+                debug!("Ship::new | The ship hase been created successfully from file: {:#?}, Ship:\n{:#?}", file_path, ship);
                 Ok(ship)
             }
             Err(err) => {
-                warn!("Ship::from_data | error: {:?}",err);
+                warn!("Ship::new | error: {:?}",err);
                 Err(err.to_string())
             }            
         }
@@ -30,7 +30,7 @@ impl FromCSV for Ship {
             Ok(mut parser) => {               
                 let mut result = parser.deserialize::<Ship>();
                 if let Some(record) = result.next() {
-                    let ship = record.map_err(|err| { err.to_string() })?;                    
+                    let ship = record.map_err(|err| { err.to_string() })?;                 
                     return Ok(ship);
                 } else {
                     warn!("Ship::from_data | error: Expected one record but got none");

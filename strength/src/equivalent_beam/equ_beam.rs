@@ -1,18 +1,18 @@
-use super::pre_data::{pre_data::PreData, ship::ship::Ship};
+use super::pre_data::{ship::ship::Ship, cross_section::cross_sections::CrossSections};
 
 
 
 pub struct EquBeam {
-    pre_data: PreData,
-    ship: Result<Ship, String>
+    cross_sections: Result<CrossSections, String>,
+    ship: Result<Ship, String>,
 }
 
 impl EquBeam {
-    pub fn new(pre_data: PreData, ship: Result<Ship, String>) -> Self {
-        EquBeam { pre_data, ship }
+    pub fn new(cross_sections: Result<CrossSections, String>, ship: Result<Ship, String>) -> Self {
+        EquBeam { cross_sections, ship }
     }
 
     pub fn solve(&self) {
-        let cross_sections = self.pre_data.cross_sections();
+        todo!()
     }
 }

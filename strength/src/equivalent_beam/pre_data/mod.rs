@@ -1,6 +1,5 @@
-pub mod pre_data;
 pub mod ship;
-mod cross_section;
-mod loads;
-mod input;
+pub mod cross_section;
+pub mod loads;
+pub mod input;
 pub mod from_csv;
