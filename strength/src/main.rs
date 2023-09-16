@@ -1,6 +1,6 @@
-use equivalent_beam::{input::Input, equ_beam::EquBeam};
 mod equivalent_beam;
-use std::collections::HashMap;
+use equivalent_beam::{equ_beam::EquBeam, pre_data::pre_data::PreData};
+use std::env;
 
 fn main() {
     env::set_var("RUST_LOG", "debug");
@@ -8,9 +8,12 @@ fn main() {
     env::set_var("RUST_BACKTRACE", "full");
     env_logger::init();
 
-    let mut equ_beam = EquBeam::new(
-        Input::new("./equ_beam/equ_beam.csv".to_string()),
-        HashMap::new(),
+    let equ_beam = EquBeam::new(
+        PreData::new("./pre_data/cross_sections.csv".to_string(),
+            "./pre_data/cross_sections.csv".to_string(),
+            "./pre_data/ship_data.csv".to_string()
+        ),
     );
-    equ_beam.run().unwrap();
+    equ_beam.solve();
+
 }
