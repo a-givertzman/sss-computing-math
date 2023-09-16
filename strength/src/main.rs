@@ -9,8 +9,8 @@ fn main() {
     env_logger::init();
 
     let equ_beam = EquBeam::new(
-        PreData::new("./pre_data/cross_sections.csv".to_string(),
-            "./pre_data/cross_sections.csv".to_string(),
+        PreData::new("./pre_data/cross_sections_data.csv".to_string(),
+            "./pre_data/loads_data.csv".to_string(),
             "./pre_data/ship_data.csv".to_string()
         ),
     );

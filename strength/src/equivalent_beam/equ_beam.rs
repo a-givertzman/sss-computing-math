@@ -13,5 +13,6 @@ impl EquBeam {
 
     pub fn solve(&self) {
         let cross_sections = self.pre_data.cross_sections();
+        let ship = self.pre_data.ship();
     }
 }
