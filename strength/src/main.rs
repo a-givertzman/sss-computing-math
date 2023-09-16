@@ -1,5 +1,5 @@
 mod equivalent_beam;
-use equivalent_beam::{equ_beam::EquBeam, pre_data::pre_data::PreData};
+use equivalent_beam::{equ_beam::EquBeam, pre_data::{pre_data::PreData, ship::ship::Ship}};
 use std::env;
 
 fn main() {
@@ -11,8 +11,8 @@ fn main() {
     let equ_beam = EquBeam::new(
         PreData::new("./pre_data/cross_sections_data.csv".to_string(),
             "./pre_data/loads_data.csv".to_string(),
-            "./pre_data/ship_data.csv".to_string()
         ),
+        Ship::new("./pre_data/ship_data.csv".to_string()),
     );
     equ_beam.solve();
 

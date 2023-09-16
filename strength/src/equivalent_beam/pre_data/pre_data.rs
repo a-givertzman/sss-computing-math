@@ -3,7 +3,7 @@ use csv::Error as CSVError;
 use log::{warn, debug};
 
 
-use super::{input::Input, cross_section::cross_section::CrossSection, ship::ship::Ship};
+use super::{input::Input, cross_section::cross_section::CrossSection};
 
 
 
@@ -11,12 +11,11 @@ use super::{input::Input, cross_section::cross_section::CrossSection, ship::ship
 pub struct PreData {
     cross_section_input_file: String,
     loads_input_file: String,
-    ship_input_file: String,
 }
 
 impl PreData {
-    pub fn new(cross_section_input_file: String, loads_input_file: String, ship_input_file: String) -> Self {
-        PreData { cross_section_input_file, loads_input_file, ship_input_file }
+    pub fn new(cross_section_input_file: String, loads_input_file: String) -> Self {
+        PreData { cross_section_input_file, loads_input_file }
     }
 
     pub fn cross_sections(&self) -> Result<HashMap<i32, CrossSection>, CSVError> {
@@ -39,26 +38,5 @@ impl PreData {
                 Err(err)
             }
         }
-    }
-
-    pub fn ship(&self) -> Result<Ship, String> {
-        let input = Input::new(&self.ship_input_file);
-        match input.run() {
-            Ok(mut parser) => {               
-                let mut result = parser.deserialize::<Ship>();
-                if let Some(record) = result.next() {
-                    let ship = record.map_err(|err| { err.to_string() })?;
-                    debug!("PreData.ship | The ship hase been created successfully{:#?}", ship);
-                    return Ok(ship);
-                } else {
-                    warn!("PreData.ship | error: Expected one record but got none");
-                    Err("Expected at least one record but got none".to_owned())
-                }
-            },
-            Err(err) => {
-                warn!("PreData.ship | error: {:?}",err);
-                Err(err.to_string())
-            }
-        }   
     }
 }
