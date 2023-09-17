@@ -1,5 +1,7 @@
 mod equivalent_beam;
-use equivalent_beam::{equ_beam::EquBeam, pre_data::{ship::ship::Ship, cross_section::cross_sections::CrossSections}};
+mod pre_data;
+use equivalent_beam::equ_beam::EquBeam;
+use pre_data::{cross_section_properties::cross_sections::CrossSections, ship::ship::Ship};
 use std::env;
 
 fn main() {

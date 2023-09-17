@@ -3,6 +3,8 @@ use serde::Deserialize;
 use crate::equivalent_beam::system_of_units::Meters;
 
 
+
+
 #[derive(Deserialize, Debug)]
 pub struct CrossSection {
     pub id: i32,
