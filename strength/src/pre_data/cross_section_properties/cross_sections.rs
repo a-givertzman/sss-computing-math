@@ -1,9 +1,6 @@
 use std::collections::HashMap;
-
 use log::{debug, warn};
-
-use crate::equivalent_beam::pre_data::{from_csv::FromCSV, input::Input};
-
+use crate::pre_data::{from_csv::FromCSV, input::Input};
 use super::cross_section::CrossSection;
 
 pub struct CrossSections {
@@ -18,7 +15,7 @@ impl CrossSections {
                 Ok(cross_sections)
             }
             Err(err) => {
-                warn!("CrossSections.new | error: {:?}",err);
+                warn!("CrossSections::new | error: {:?}",err);
                 Err(err)
 
             }
@@ -40,11 +37,11 @@ impl FromCSV for CrossSections {
                 if cross_sections.len() == 0 {
                     todo!("cros_sections не должен быть пустым")
                 }
-                debug!("CrossSections.from_csv | Cross sections have been applied successfully form file: {:#?} {:#?}", file_path, cross_sections);
+                debug!("CrossSections::from_csv | Cross sections have been applied successfully form file: {:#?} {:#?}", file_path, cross_sections);
                 Ok(CrossSections { cross_sections })
             },
             Err(err) => {
-                warn!("CrossSections.from_csv | error: {:?}",err);
+                warn!("CrossSections::from_csv | error: {:?}",err);
                 Err(err)
             }
         }

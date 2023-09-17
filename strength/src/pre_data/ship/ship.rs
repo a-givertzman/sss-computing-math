@@ -1,7 +1,8 @@
 use log::{debug, warn};
 use serde::Deserialize;
+use crate::pre_data::{from_csv::FromCSV, input::Input};
 
-use crate::equivalent_beam::pre_data::{from_csv::FromCSV, input::Input};
+
 
 
 #[derive(Deserialize, Debug)]
