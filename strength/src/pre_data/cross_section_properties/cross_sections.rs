@@ -20,7 +20,7 @@ impl CrossSections {
             match result {
                 Ok(cross_section) => { cross_sections.insert(cross_section.id, cross_section); },
                 Err(err) => {
-                    warn!("CrossSections::from_csv | error: {:?}",err);
+                    warn!("CrossSections::from_csv_parser | error: {:?}",err);
                     return Err(err.to_string());
                 }
             }
@@ -40,7 +40,7 @@ impl CrossSections {
                 CrossSections::from_csv_parser(parser)
             },
             Err(err) => {
-                warn!("CrossSections::from_csv | error: {:?}.",err);
+                warn!("CrossSections::from_csv_file | error: {:?}.",err);
                 Err(err.to_string())
             }
         }
