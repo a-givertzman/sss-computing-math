@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use csv::Reader;
 use log::{debug, warn};
 use std::fs::File;
-use crate::pre_data::{from_csv::FromCSV, input::CSV};
+use crate::pre_data::{from_csv::FromCSV, csv::CSV};
 use super::cross_section::CrossSection;
 
 
