@@ -1,6 +1,6 @@
 use log::{debug, warn};
 use serde::Deserialize;
-use crate::pre_data::{from_csv::FromCSV, csv::CSV};
+use crate::pre_data::csv::{FromCSV, CSV};
 use std::fs::File;
 use csv::Reader;
 
@@ -8,20 +8,32 @@ use super::ship_measurements::ShipMeasurements;
 
 
 /// Ship
-/// - ship_hull_weight - Вес металлического корпуса корабля без учета перевозимого груза, жидкостей, баласта и.т.д.
+/// - lightweght - это вес судна, когда оно было построено на верфи,
+/// не включает вес любого расходного материала, такого как топливо, вода, масло или другие расходные материалы.
+/// - completeness_coefficient - коэффициент полноты,
+/// - displacement_tonnage - водоизмещение судна,
+/// - deadweight - это вес (в тоннах) всего груза, топлива, сухих продуктов, припасов и тд, перевозимых на борту судна.
 #[derive(Deserialize, Debug)]
 pub struct Ship {
     ship_measurements: ShipMeasurements,
     ship_name: String,
-    ship_hull_weight: f64,
+    lightweght: f64,
+    completeness_coefficient: f64,
+    displacement_tonnage: f64,
+    draft: f64,
 }
 
 
 impl Ship {
     pub fn new(ship_measurements: ShipMeasurements,
         ship_name: String,
-        ship_hull_weight: f64,) -> Self {
-        Ship { ship_measurements, ship_name, ship_hull_weight }
+        lightweght: f64,
+        completeness_coefficient: f64,
+        displacement_tonnage: f64,
+        draft: f64,
+        deadweight: f64) -> Self {
+        Ship { ship_measurements, ship_name, lightweght,
+            completeness_coefficient, displacement_tonnage, draft }
     }
 
     fn from_parser(mut parser: Reader<File>) -> Result<Self, String> {
