@@ -1,6 +1,6 @@
 use log::{debug, warn};
 use serde::Deserialize;
-use crate::pre_data::{from_csv::FromCSV, input::CSV};
+use crate::pre_data::{from_csv::FromCSV, csv::CSV};
 use std::fs::File;
 use csv::Reader;
 
