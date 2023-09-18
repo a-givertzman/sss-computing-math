@@ -6,16 +6,12 @@ use std::env;
 
 fn main() {
     env::set_var("RUST_LOG", "debug");
-    // env::set_var("RUST_BACKTRACE", "1");
+    //env::set_var("RUST_BACKTRACE", "1");
     env::set_var("RUST_BACKTRACE", "full");
     env_logger::init();
 
-    let equ_beam = EquBeam::new(
-        CrossSections::new("./pre_data/cross_sections_data.csv".to_string()),
-        Ship::from_csv("./pre_data/ship_data.csv".to_string()),
-    );
-    equ_beam.solve();
-
+    let cross_section = CrossSections::from_csv("./pre_data/cross_sections_data.csv".to_string());
+    let ship = Ship::from_csv("./pre_data/ship_data.csv".to_string());
 }
 
 
@@ -27,8 +23,8 @@ fn main() {
 //             DistributedShipHullWeight {
 //                 Ship::from_file(file_input)
 //             }.spatiums(),
-//             DistributedCargo { 
-//                 Cargo::from_file(file_input)
+//             DistributedCargoShip {
+//                 CargoShip::from_file(file_input)
 //             }.spatiums()
 //         }.spatiums()
 //     }.diagrams()

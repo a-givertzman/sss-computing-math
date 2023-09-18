@@ -1,0 +1,8 @@
+{
+    "ship_measurements": {
+        "length_design_waterline": 150,
+        "number_spatiums": 20
+    },
+    "ship_hull_weight": 2000.5,
+    "ship_name": "Сухогруз ТКЗ"
+}
