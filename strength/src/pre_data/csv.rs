@@ -4,7 +4,10 @@ use log::trace;
 use log::warn;
 use std::fs::File;
 
-
+pub trait FromCSV {
+    fn from_csv(file_path: String) -> Result<Self, String>
+    where Self: Sized;
+}
 
 pub struct CSV<'a> {
     file_path: &'a str,
@@ -23,7 +26,7 @@ impl<'a> CSV<'_> {
                 Ok(reader)
             },
             Err(err) => {
-                warn!("Input.run | error: {:?}",err);
+                warn!("CSV.run | error: {:?}",err);
                 Err(err)
             }
         }

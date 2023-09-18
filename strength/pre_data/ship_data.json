@@ -1,8 +1,12 @@
 {
     "ship_measurements": {
-        "length_design_waterline": 150,
-        "number_spatiums": 20
+        "length_design_waterline": 125.2,
+        "number_spatiums": 20,
+        "width_design_waterline": 15.2
     },
-    "ship_hull_weight": 2000.5,
-    "ship_name": "Сухогруз ТКЗ"
+    "lightweght": 1771,
+    "ship_name": "Сухогруз ТКЗ",
+    "completeness_coefficient": 0.65,
+    "displacement_tonnage": 5448,
+    "draft": 3.5
 }
