@@ -10,7 +10,7 @@ fn main() {
     env::set_var("RUST_BACKTRACE", "full");
     env_logger::init();
 
-    let cross_section = CrossSections::from_csv("./pre_data/cross_sections_data.csv".to_string());
+    let cross_section = CrossSections::from_csv_file("./pre_data/cross_sections_data.csv".to_string());
     let ship = Ship::from_csv("./pre_data/ship_data.csv".to_string());
 }
 

@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use csv::Reader;
 use log::{debug, warn};
 use std::fs::File;
-use crate::pre_data::csv::{CSV, FromCSV};
+use crate::pre_data::csv::CSV;
 use super::cross_section::CrossSection;
 
 
@@ -14,7 +14,7 @@ impl CrossSections {
     pub fn new(cross_sections: HashMap<i32, CrossSection>) -> Self {
         CrossSections { cross_sections }
     }
-    fn from_csv_parser(mut parser: Reader<File>) -> Result<Self, String> {
+    pub fn from_csv_parser(mut parser: Reader<File>) -> Result<Self, String> {
         let mut cross_sections = HashMap::new();
         for result in parser.deserialize::<CrossSection>() {
             match result {
@@ -32,11 +32,8 @@ impl CrossSections {
         debug!("CrossSections::from_csv_parser | Cross sections have been created successfully.\n CrossSections:\n {:#?}", cross_sections);
         Ok(CrossSections::new(cross_sections))
     }
-}
 
-
-impl FromCSV for CrossSections {
-    fn from_csv(file_path: String) -> Result<Self, String> {
+    pub fn from_csv_file(file_path: String) -> Result<Self, String> {
         let input = CSV::new(&file_path);
         match input.parser() {
             Ok(parser) => {
@@ -49,5 +46,3 @@ impl FromCSV for CrossSections {
         }
     }
 }
-
-
