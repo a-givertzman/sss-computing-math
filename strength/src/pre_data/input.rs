@@ -6,17 +6,17 @@ use std::fs::File;
 
 
 
-pub struct Input<'a> {
+pub struct CSV<'a> {
     file_path: &'a str,
 }
 
 
-impl<'a> Input<'_> {
-    pub fn new(file_path: &str) -> Input {
-        Input { file_path }
+impl<'a> CSV<'_> {
+    pub fn new(file_path: &str) -> CSV {
+        CSV { file_path }
     }
 
-    pub fn run(&self) -> Result<Reader<File>, CSVError> {
+    pub fn parser(&self) -> Result<Reader<File>, CSVError> {
         match Reader::from_path(self.file_path) {
             Ok(reader) => {
                 trace!("reader: {:?}", reader);
@@ -26,6 +26,6 @@ impl<'a> Input<'_> {
                 warn!("Input.run | error: {:?}",err);
                 Err(err)
             }
-        }   
+        }
     }
 }
