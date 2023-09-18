@@ -1,7 +1,7 @@
 mod equivalent_beam;
 mod pre_data;
 use equivalent_beam::equ_beam::EquBeam;
-use pre_data::{cross_section_properties::cross_sections::CrossSections, ship::ship::Ship, from_csv::FromCSV};
+use pre_data::{cross_section_properties::cross_sections::CrossSections, ship::ship::Ship, csv::FromCSV};
 use std::env;
 
 fn main() {
@@ -18,12 +18,12 @@ fn main() {
 // Solution {
 //     EquBeam {
 //         ResultantDistributedLoad {
-//             DistributedBuoyantForce {
+//             DistributedBuoyantLoad {
 //                 TheoreticalDrawing::from_file(file_input)}.spatiums(),
-//             DistributedShipHullWeight {
+//             DistributedLightweight{
 //                 Ship::from_file(file_input)
 //             }.spatiums(),
-//             DistributedCargoShip {
+//             DistributedDeadweight {
 //                 CargoShip::from_file(file_input)
 //             }.spatiums()
 //         }.spatiums()
