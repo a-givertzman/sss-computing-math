@@ -1,26 +1,28 @@
-use crate::equivalent_beam::system_of_units::Meters;
+use serde::Deserialize;
 
+
+#[derive(Deserialize, Debug)]
 pub struct Location {
-    x: Meters,
-    y: Meters,
-    z: Meters,
+    x: f64,
+    y: f64,
+    z: f64,
 }
 
 impl Location {
-    fn new(x: Meters, y: Meters, z: Meters) -> Self {
+    pub fn new(x: f64, y: f64, z: f64) -> Self {
         Location { x, y, z }
     }
 
-    fn x(&self) -> &Meters {
-        &self.x
+    pub fn x(&self) -> f64 {
+        self.x
     }
 
-    fn y(&self) -> &Meters {
-        &self.y
+    pub fn y(&self) -> f64 {
+        self.y
     }
 
-    fn z(&self) -> &Meters {
-        &self.z
+    pub fn z(&self) -> f64 {
+        self.z
     }
 
 

@@ -14,26 +14,26 @@ impl CrossSections {
     pub fn new(cross_sections: HashMap<i32, CrossSection>) -> Self {
         CrossSections { cross_sections }
     }
-    pub fn from_csv_parser(mut parser: Reader<File>) -> Result<Self, String> {
+    pub fn from_csv_parser(mut parser: Reader<File>) -> Option<Result<Self, String>> {
         let mut cross_sections = HashMap::new();
         for result in parser.deserialize::<CrossSection>() {
             match result {
                 Ok(cross_section) => { cross_sections.insert(cross_section.id, cross_section); },
                 Err(err) => {
                     warn!("CrossSections::from_csv_parser | error: {:?}",err);
-                    return Err(err.to_string());
+                    return Some(Err(err.to_string()));
                 }
             }
         }
         if cross_sections.is_empty() {
-            warn!("CrossSections::from_csv_parser | error: Expected at least one record but got none.");
-            return Err("Expected at least one record but got none.".to_owned());
+            debug!("CrossSections::from_csv_parser | Cross sections have not been defined.\n CrossSections:\n {:#?}", cross_sections);
+            return None;
         }
         debug!("CrossSections::from_csv_parser | Cross sections have been created successfully.\n CrossSections:\n {:#?}", cross_sections);
-        Ok(CrossSections::new(cross_sections))
+        Some(Ok(CrossSections::new(cross_sections)))
     }
 
-    pub fn from_csv_file(file_path: String) -> Result<Self, String> {
+    pub fn from_csv_file(file_path: String) -> Option<Result<Self, String>> {
         let input = CSV::new(&file_path);
         match input.parser() {
             Ok(parser) => {
@@ -41,8 +41,12 @@ impl CrossSections {
             },
             Err(err) => {
                 warn!("CrossSections::from_csv_file | error: {:?}.",err);
-                Err(err.to_string())
+                Some(Err(err.to_string()))
             }
         }
+    }
+
+    fn cross_section(&self, id:i32) -> Option<&CrossSection> {
+        self.cross_sections.get(&id)
     }
 }
