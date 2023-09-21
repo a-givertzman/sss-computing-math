@@ -1,7 +1,7 @@
 use log::{debug, warn};
 use serde::Deserialize;
 
-use crate::{equivalent_beam::force::Force, pre_data::json::JSON};
+use crate::{equivalent_beam::force::Force, pre_data::{json::JSON, loads::intensity_load::IntensityLoad}};
 
 #[derive(Deserialize, Debug)]
 pub struct Deadweight {
@@ -31,8 +31,12 @@ impl Deadweight {
             },
             Err(err) => {
                 warn!("Deadweight::from_json_file | error: {:?}.",err);
-                return Err(err.to_string());
+                return Err(err);
             }
         }
+    }
+
+    pub fn intensity(&self) -> IntensityLoad {
+        todo!("Распределить Deadweight по шпациям. Вернуть интенсивность нагрузки H/m")
     }
 }
