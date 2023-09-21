@@ -4,11 +4,6 @@ use log::trace;
 use log::warn;
 use std::fs::File;
 
-pub trait FromCSV {
-    fn from_csv(file_path: String) -> Result<Self, String>
-    where Self: Sized;
-}
-
 pub struct CSV<'a> {
     file_path: &'a str,
 }
