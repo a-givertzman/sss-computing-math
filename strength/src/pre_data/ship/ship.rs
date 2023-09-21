@@ -10,7 +10,7 @@ use super::ship_measurements::ShipMeasurements;
 /// - lightweght - это вес судна (в тоннах), когда оно было построено на верфи.
 /// Не включает вес любого расходного материала, такого как топливо, вода, масло или другие расходные материалы.
 /// - completeness_coefficient - коэффициент полноты,
-/// - displacement_tonnage - водоизмещение судна (в тоннах),
+/// - max_displacement_tonnage - водоизмещение судна (в тоннах) при 100% загрузки,
 /// - deadweight - это вес (в тоннах) всего груза, топлива, сухих продуктов, припасов и тд, перевозимых на борту судна.
 /// - draft - осадка
 #[derive(Deserialize, Debug)]
@@ -52,7 +52,7 @@ impl Ship {
             },
             Err(err) => {
                 warn!("Ship::from_json_file | error: {:?}.",err);
-                return Err(err.to_string());
+                return Err(err);
             }
         }
     }
