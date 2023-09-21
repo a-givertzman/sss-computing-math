@@ -1,7 +1,7 @@
 mod equivalent_beam;
 mod pre_data;
 use equivalent_beam::equ_beam::EquBeam;
-use pre_data::{cross_section_properties::cross_sections::CrossSections, ship::ship::Ship, csv::FromCSV};
+use pre_data::{cross_section_properties::cross_sections::CrossSections, ship::ship::Ship, loads::deadweight::deadweight::Deadweight};
 use std::env;
 
 fn main() {
@@ -11,7 +11,8 @@ fn main() {
     env_logger::init();
 
     let cross_section = CrossSections::from_csv_file("./pre_data/cross_sections_data.csv".to_string());
-    let ship = Ship::from_csv("./pre_data/ship_data.csv".to_string());
+    let ship = Ship::from_json_file("./pre_data/ship_data.json".to_string());
+    let deadweight = Deadweight::from_json_file("./pre_data/deadweight.json".to_string());
 }
 
 
