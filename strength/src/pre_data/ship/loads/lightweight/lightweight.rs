@@ -41,10 +41,46 @@ impl Lightweght {
         }
     }
 
-    pub fn spatiums(&self, ship: &Ship) -> HashMap<String, Spatium> {
-        let spatiums = ship.empty_spatiums();
-        todo!()
+    pub fn spatiums(&self) -> Result<HashMap<i64, Spatium>, String> {
+         match Ship::from_json_file("./pre_data/ship_data.json".to_string()) {
+            Ok(ship) => {
+                let mut spatiums: HashMap<i64, Spatium> = HashMap::new();
+                let spatium_noce = Spatium::new(0, 20.0, ship.length_spatium());
+                let spatium_stern = Spatium::new(ship.number_spatiums(), 20.0, ship.length_spatium());
+                spatiums.insert(0, spatium_noce);
+                spatiums.insert(ship.number_spatiums(), spatium_stern);
+                let (a, b, c) = self.params(&ship);
+                let mut length = ship.length_spatium();
+                while length  < ship.length_design_waterline() - ship.length_spatium() {
+                    if length > 0.0 && length > ship.length_design_waterline() / 3.0 {
+
+                    }
+
+
+                    length += ship.length_spatium();
+                }
+
+                todo!()
+            },
+            Err(err) => {
+                warn!("Lightweght.spatiums() | error: {:?}.",err);
+                return Err(err.to_string());
+            }
+        }
     }
+
+    
+
+    
+    fn params(&self, ship: &Ship) -> (f64, f64, f64) {
+        if ship.completeness_coefficient > 0.7 {
+            (0.65, 1.20, 0.57)
+        } else {
+            (0.71, 1.17, 0.6)
+        }
+    }
+
+
 
 }
 
