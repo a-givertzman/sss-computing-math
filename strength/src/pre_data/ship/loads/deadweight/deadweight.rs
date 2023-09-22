@@ -1,7 +1,10 @@
+use std::collections::HashMap;
+
 use log::{debug, warn};
 use serde::Deserialize;
 
-use crate::{equivalent_beam::force::Force, pre_data::{json::JSON, loads::intensity_load::IntensityLoad}};
+use crate::{pre_data::{json::JSON, ship::ship::Ship}, equivalent_beam::{force::Force, spatium::Spatium}};
+
 
 #[derive(Deserialize, Debug)]
 pub struct Deadweight {
@@ -36,7 +39,9 @@ impl Deadweight {
         }
     }
 
-    pub fn intensity(&self) -> IntensityLoad {
-        todo!("Распределить Deadweight по шпациям. Вернуть интенсивность нагрузки H/m")
+    pub fn spatiums(&self, ship: &Ship) -> HashMap<String, Spatium> {
+        let spatiums = ship.empty_spatiums();
+        todo!()
     }
+
 }

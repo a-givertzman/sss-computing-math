@@ -23,4 +23,8 @@ impl ShipMeasurements {
     pub fn length_spatium(&self) -> f64 {
         self.length_design_waterline / self.number_spatiums as f64
     }
+
+    pub fn number_spatiums(&self) -> i64 {
+        self.number_spatiums
+    }
 }
