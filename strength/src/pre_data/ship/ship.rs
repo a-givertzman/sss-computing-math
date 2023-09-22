@@ -8,7 +8,7 @@ use crate::equivalent_beam::system_of_units::Tons;
 use crate::pre_data::json::JSON;
 use crate::pre_data::ship::loads::deadweight::deadweight::Deadweight;
 use crate::pre_data::ship::loads::lightweight::lightweight::Lightweght;
-use super::loads::load::{Load, TypeLoad};
+use super::loads::load::TypeLoad;
 use super::ship_measurements::ShipMeasurements;
 
 
