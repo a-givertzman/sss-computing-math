@@ -11,7 +11,8 @@ fn main() {
     env_logger::init();
 
     let cross_section = CrossSections::from_csv_file("./pre_data/cross_sections_data.csv".to_string());
-    let ship = Ship::from_json_file("./pre_data/ship_data.json".to_string());
+    let ship = Ship::from_json_file("./pre_data/ship_data.json".to_string()).unwrap();
+    
 }
 
 

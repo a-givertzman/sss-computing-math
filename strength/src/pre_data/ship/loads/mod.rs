@@ -1,3 +1,3 @@
 pub mod deadweight;
 pub mod lightweight;
-pub mod load;
+pub mod type_load;
