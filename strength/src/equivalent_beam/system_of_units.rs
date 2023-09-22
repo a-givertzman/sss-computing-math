@@ -4,7 +4,7 @@ use serde::Deserialize;
 pub struct Newton(f64);
 
 #[derive(Deserialize, Debug)]
-pub struct Tons(f64);
+pub struct Tons(pub f64);
 
 
 impl From<f64> for Newton {
