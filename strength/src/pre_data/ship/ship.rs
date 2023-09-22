@@ -6,9 +6,7 @@ use serde::Deserialize;
 use crate::equivalent_beam::spatium::Spatium;
 use crate::equivalent_beam::system_of_units::Tons;
 use crate::pre_data::json::JSON;
-use crate::pre_data::ship::loads::deadweight::deadweight::Deadweight;
-use crate::pre_data::ship::loads::lightweight::lightweight::Lightweght;
-use super::loads::load::TypeLoad;
+use super::loads::lightweight::lightweight::Lightweght;
 use super::ship_measurements::ShipMeasurements;
 
 
@@ -22,8 +20,9 @@ use super::ship_measurements::ShipMeasurements;
 #[derive(Deserialize, Debug)]
 pub struct Ship {
     ship_measurements: ShipMeasurements,
+    lightweight: Lightweght,
     ship_name: String,
-    completeness_coefficient: f64,
+    pub completeness_coefficient: f64,
     max_displacement_tonnage: Tons,
     draft: f64,
 }
@@ -31,11 +30,12 @@ pub struct Ship {
 
 impl Ship {
     pub fn new(ship_measurements: ShipMeasurements,
+        lightweight: Lightweght,
         ship_name: String,
         completeness_coefficient: f64,
         max_displacement_tonnage: Tons,
         draft: f64) -> Self {
-        Ship { ship_measurements, ship_name,
+        Ship { ship_measurements, lightweight, ship_name,
             completeness_coefficient, max_displacement_tonnage, draft }
     }
 
@@ -61,41 +61,25 @@ impl Ship {
         }
     }
 
-    pub fn empty_spatiums(&self) -> HashMap<String, Spatium> {
-        let mut spatiums: HashMap<String, Spatium> = HashMap::new();
-        for i in 0..self.number_spatiums() - 1 {
+    pub fn empty_spatiums(&self) -> HashMap<i64, Spatium> {
+        let mut spatiums: HashMap<i64, Spatium> = HashMap::new();
+        for i in 0..self.number_spatiums() + 1 {
             let id = format!("{}-{}", i, i+1);
-            let clone_id = id.clone();
             let spatium = Spatium::new(id, 0.0, self.length_spatium());
-            spatiums.insert(clone_id, spatium);
+            spatiums.insert(i, spatium);
         }
         spatiums
     }
 
-
-    pub fn spatiums(&self, type_load: TypeLoad) -> HashMap<String, Spatium> {
-        match type_load {
-            TypeLoad::LightweghtIntensity => {
-                let lightweight = Lightweght::from_json_file("./pre_data/ship_data.json".to_string());
-                todo!()
-            },
-            TypeLoad::DeadweightIntensity => {
-                let deadweight = Deadweight::from_json_file("./pre_data/ship_data.json".to_string());
-                todo!()
-            },
-            TypeLoad::DisplacementTonnageIntensity => { todo!() },
-            TypeLoad::BuoyantIntensity => todo!(),
-            TypeLoad::BendingMoment => todo!(),
-            TypeLoad::ShearForce => todo!(),
-        }
-    }
-
-
-    fn length_spatium(&self) -> f64 {
+    pub fn length_spatium(&self) -> f64 {
         self.ship_measurements.length_spatium()
     }
 
-    fn number_spatiums(&self) -> i64 {
+    pub fn number_spatiums(&self) -> i64 {
         self.ship_measurements.number_spatiums()
+    }
+
+    pub fn length_design_waterline(&self) -> f64 {
+        self.ship_measurements.length_design_waterline()
     }
 }
