@@ -1,13 +1,18 @@
 #[derive(Debug)]
 pub struct Spatium {
-    id: i64,
-    value: f64,
-    length: f64
+    start_coord: f64,
+    end_coord: f64,
+    start_value: f64,
+    end_value: f64,
+
 }
 
 impl Spatium {
-    pub fn new(id: i64, value: f64, length: f64) -> Self {
-        Spatium { id, value, length }
+    pub fn new(start_coord: f64,
+        end_coord: f64,
+        start_value: f64,
+        end_value: f64,) -> Self {
+        Spatium { start_coord, end_coord, start_value, end_value }
     }
 
 
