@@ -1,12 +1,7 @@
-use std::collections::HashMap;
-
 use log::{debug, warn};
 use serde::Deserialize;
-
-use crate::equivalent_beam::spatium::Spatium;
 use crate::equivalent_beam::system_of_units::Tons;
 use crate::pre_data::json::JSON;
-use super::loads::lightweight::lightweight::Lightweght;
 use super::ship_measurements::ShipMeasurements;
 
 
@@ -19,24 +14,18 @@ use super::ship_measurements::ShipMeasurements;
 /// - draft - осадка
 #[derive(Deserialize, Debug)]
 pub struct Ship {
-    ship_measurements: ShipMeasurements,
-    lightweight: Lightweght,
-    ship_name: String,
+    pub ship_measurements: ShipMeasurements,
     pub completeness_coefficient: f64,
-    max_displacement_tonnage: Tons,
-    draft: f64,
+    pub max_displacement_tonnage: Tons,
+
 }
 
 
 impl Ship {
     pub fn new(ship_measurements: ShipMeasurements,
-        lightweight: Lightweght,
-        ship_name: String,
         completeness_coefficient: f64,
-        max_displacement_tonnage: Tons,
-        draft: f64) -> Self {
-        Ship { ship_measurements, lightweight, ship_name,
-            completeness_coefficient, max_displacement_tonnage, draft }
+        max_displacement_tonnage: Tons,) -> Self {
+        Ship { ship_measurements, completeness_coefficient, max_displacement_tonnage }
     }
 
     pub fn from_json_file(file_path: String) -> Result<Self, String> {
@@ -61,25 +50,20 @@ impl Ship {
         }
     }
 
-    pub fn empty_spatiums(&self) -> HashMap<i64, Spatium> {
-        let mut spatiums: HashMap<i64, Spatium> = HashMap::new();
-        for i in 0..self.number_spatiums() + 1 {
-            let id = format!("{}-{}", i, i+1);
-            let spatium = Spatium::new(id, 0.0, self.length_spatium());
-            spatiums.insert(i, spatium);
-        }
-        spatiums
+    pub fn coord_nose(&self) -> f64 {
+        self.ship_measurements.length_design_waterline / 2.0
+    }
+
+    pub fn coord_stern(&self) -> f64 {
+        - self.ship_measurements.length_design_waterline / 2.0
+    }
+
+    pub fn length_design_waterline(&self) -> f64 {
+        self.ship_measurements.length_design_waterline
     }
 
     pub fn length_spatium(&self) -> f64 {
         self.ship_measurements.length_spatium()
-    }
 
-    pub fn number_spatiums(&self) -> i64 {
-        self.ship_measurements.number_spatiums()
-    }
-
-    pub fn length_design_waterline(&self) -> f64 {
-        self.ship_measurements.length_design_waterline()
     }
 }
