@@ -1,5 +1,3 @@
-use std::collections::HashMap;
-
 use log::{debug, warn};
 use serde::Deserialize;
 
@@ -39,17 +37,7 @@ impl Deadweight {
         }
     }
 
-    pub fn spatiums(&self) -> Result<HashMap<i64, Spatium>, String> {
-        match Ship::from_json_file("./pre_data/ship_data.json".to_string()) {
-           Ok(ship) => {
-               let spatiums = ship.empty_spatiums();
-               todo!()
-           },
-           Err(err) => {
-               warn!("Deadweight.spatiums() | error: {:?}.",err);
-               return Err(err.to_string());
-           }
-       }
-   }
-
+    pub fn deadweight_intensity(&self, ship: &Ship) -> Vec<Spatium> {
+        todo!()
+    }
 }
