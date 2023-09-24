@@ -8,9 +8,9 @@ use serde::Deserialize;
 /// - draft - осадка,
 #[derive(Deserialize, Debug)]
 pub struct ShipMeasurements {
-    length_design_waterline: f64,
-    width_design_waterline: f64,
-    number_spatiums: i64,
+    pub length_design_waterline: f64,
+    pub width_design_waterline: f64,
+    pub number_spatiums: i64,
 
 
 }
@@ -23,13 +23,4 @@ impl ShipMeasurements {
     pub fn length_spatium(&self) -> f64 {
         self.length_design_waterline / self.number_spatiums as f64
     }
-
-    pub fn number_spatiums(&self) -> i64 {
-        self.number_spatiums
-    }
-
-    pub fn length_design_waterline(&self) -> f64 {
-        self.length_design_waterline
-    }
-
 }

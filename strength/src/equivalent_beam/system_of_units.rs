@@ -27,7 +27,3 @@ impl From<Newton> for Tons {
         Tons((value.0 / 9.81) / 1000.0)
     }
 }
-
-
-#[derive(Deserialize, Debug)]
-pub struct Meters(f64);
