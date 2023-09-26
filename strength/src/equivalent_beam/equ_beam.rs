@@ -1,6 +1,6 @@
 use log::warn;
 
-use crate::{ship::{cross_section_properties::cross_sections::CrossSections, loads::load::Load}, core::output::{output::Output, type_output::TypeOutput}};
+use crate::{ship::{cross_section_properties::cross_sections::CrossSections, loads::load::Load}, output::{type_output::TypeOutput, output::Output}};
 
 
 

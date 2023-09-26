@@ -1,6 +1,7 @@
 mod equivalent_beam;
 mod ship;
 mod core;
+mod output;
 use std::env;
 
 use ship::loads::lightweight::lightweight::Lightweight;

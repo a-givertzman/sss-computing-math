@@ -1,7 +1,6 @@
 use log::{warn, debug};
 use serde::Deserialize;
-use crate::{core::{json::JSON, output::type_output::TypeOutput}, ship::spatium::Spatium};
-
+use crate::{core::json::JSON, ship::spatium::Spatium, output::type_output::TypeOutput};
 use super::{lightweight::lightweight::Lightweight, deadweight::deadweight::Deadweight};
 
 
