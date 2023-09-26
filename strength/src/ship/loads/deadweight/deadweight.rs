@@ -7,13 +7,13 @@ use super::force::Force;
 
 #[derive(Deserialize, Debug)]
 pub struct Deadweight {
-    loads: Vec<Force>,
+    forces: Vec<Force>,
 }
 
 
 impl Deadweight {
-    pub fn new(loads: Vec<Force>) -> Self {
-        Deadweight { loads }
+    pub fn new(forces: Vec<Force>) -> Self {
+        Deadweight { forces }
     }
 
     pub fn from_json_file(file_path: String) -> Result<Self, String> {
