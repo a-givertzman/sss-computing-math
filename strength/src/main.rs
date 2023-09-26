@@ -12,19 +12,3 @@ fn main() {
     lightweight.lightweight_intensity();
 
 }
-
-
-// Solution {
-//     EquBeam {
-//         ResultantDistributedLoad {
-//             DistributedBuoyantLoad {
-//                 TheoreticalDrawing::from_file(file_input)}.spatiums(),
-//             DistributedLightweight{
-//                 Ship::from_file(file_input)
-//             }.spatiums(),
-//             DistributedDeadweight {
-//                 CargoShip::from_file(file_input)
-//             }.spatiums()
-//         }.spatiums()
-//     }.diagrams()
-// }.solution()
