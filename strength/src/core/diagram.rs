@@ -1,4 +1,4 @@
-use crate::pre_data::ship::{loads::type_load::TypeLoad, spatium::Spatium};
+use crate::ship::{spatium::Spatium, loads::type_load::TypeLoad};
 
 
 pub struct Diagram {

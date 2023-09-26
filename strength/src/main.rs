@@ -1,8 +1,9 @@
 mod equivalent_beam;
-mod pre_data;
+mod ship;
 mod core;
-use pre_data::{cross_section_properties::cross_sections::CrossSections, ship::{ship::Ship, loads::lightweight::lightweight::Lightweight}};
 use std::env;
+
+use ship::loads::lightweight::lightweight::Lightweight;
 
 fn main() {
     env::set_var("RUST_LOG", "debug");

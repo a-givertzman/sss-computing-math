@@ -1,7 +1,9 @@
 use log::{debug, warn};
 use serde::Deserialize;
-use crate::{pre_data::json::JSON, core::system_of_units::Tons};
+use crate::core::{system_of_units::Tons, json::JSON};
+
 use super::ship_measurements::ShipMeasurements;
+
 
 
 /// Ship
