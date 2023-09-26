@@ -1,6 +1,7 @@
 use log::warn;
 
-use crate::{ship::{cross_section_properties::cross_sections::CrossSections, loads::{load::Load, type_load::TypeLoad}}, core::diagram::Diagram};
+use crate::{ship::{cross_section_properties::cross_sections::CrossSections, loads::load::Load}, core::output::{output::Output, type_output::TypeOutput}};
+
 
 
 
@@ -14,12 +15,12 @@ impl EquBeam {
         EquBeam { cross_sections, load }
     }
 
-    pub fn diagram(&self, type_load: TypeLoad) -> Result<Diagram, String> {
+    pub fn output(&self, type_output: TypeOutput) -> Result<Output, String> {
         match &self.load {
             Ok(load) => {
-                match load.spatiums(type_load) {
+                match load.spatiums(type_output) {
                     Ok(spatiums) => {
-                        Ok(Diagram::new(spatiums, type_load))
+                        Ok(Output::new(spatiums, type_output))
                     },
                     Err(err) => {
                         warn!("EquBeam::spatiums() | error: {:?}.", err);

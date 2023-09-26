@@ -1,8 +1,8 @@
 use log::{warn, debug};
 use serde::Deserialize;
-use crate::{core::json::JSON, ship::spatium::Spatium};
+use crate::{core::{json::JSON, output::type_output::TypeOutput}, ship::spatium::Spatium};
 
-use super::{lightweight::lightweight::Lightweight, deadweight::deadweight::Deadweight, type_load::TypeLoad};
+use super::{lightweight::lightweight::Lightweight, deadweight::deadweight::Deadweight};
 
 
 #[derive(Deserialize, Debug)]
@@ -40,18 +40,19 @@ impl Load {
         }
     }
 
-    pub fn spatiums(&self, type_load: TypeLoad) -> Result<Vec<Spatium>, String> {
-        match type_load {
-            TypeLoad::LightweghtIntensity => {
+    pub fn spatiums(&self, type_ouput: TypeOutput) -> Result<Vec<Spatium>, String> {
+        match type_ouput {
+            TypeOutput::LightweghtIntensity => {
                 self.lightweight.lightweight_intensity()
             },
-            TypeLoad::DeadweightIntensity => {
+            TypeOutput::DeadweightIntensity => {
                 todo!()
             },
-            TypeLoad::DisplacementTonnageIntensity => { todo!() },
-            TypeLoad::BuoyantIntensity => todo!(),
-            TypeLoad::BendingMoment => todo!(),
-            TypeLoad::ShearForce => todo!(),
+            TypeOutput::DisplacementTonnageIntensity => { todo!() },
+            TypeOutput::BuoyantIntensity => todo!(),
+            TypeOutput::BendingMoment => todo!(),
+            TypeOutput::ShearForce => todo!(),
+            TypeOutput::Stress => todo!(),
         }
     }
 
