@@ -35,7 +35,7 @@ impl CrossSections {
     }
 
     pub fn from_csv_file(file_path: String) -> Option<Result<Self, String>> {
-        let input = CSV::new(&file_path);
+        let input = CSV::new(file_path);
         match input.parser() {
             Ok(parser) => {
                 CrossSections::from_csv_parser(parser)
