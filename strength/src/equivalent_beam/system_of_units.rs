@@ -1,7 +1,7 @@
 use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
-pub struct Newton(f64);
+pub struct Newton(pub f64);
 
 #[derive(Deserialize, Debug)]
 pub struct Tons(pub f64);
