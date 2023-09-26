@@ -1,6 +1,6 @@
 use log::warn;
 use crate::pre_data::{cross_section_properties::cross_sections::CrossSections, ship::loads::{type_load::TypeLoad, load::Load}};
-use super::spatium::Spatium;
+use super::{spatium::Spatium, diagram::Diagram};
 
 
 
@@ -16,9 +16,19 @@ impl EquBeam {
         EquBeam { cross_sections, load }
     }
 
-    pub fn spatiums(&self, type_load: TypeLoad) -> Result<Vec<Spatium>, String> {
+    pub fn diagram(&self, type_load: TypeLoad) -> Result<Diagram, String> {
         match &self.load {
-            Ok(load) => { load.spatiums(type_load) },
+            Ok(load) => {
+                match load.spatiums(type_load) {
+                    Ok(spatiums) => {
+                        Ok(Diagram::new(spatiums, type_load))
+                    },
+                    Err(err) => {
+                        warn!("EquBeam::spatiums() | error: {:?}.", err);
+                        return Err(err.to_string());
+                    }
+                }
+            },
             Err(err) => {
                 warn!("EquBeam::spatiums() | error: {:?}.", err);
                 return Err(err.to_string());
