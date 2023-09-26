@@ -1,6 +1,6 @@
 use log::warn;
 use crate::pre_data::{cross_section_properties::cross_sections::CrossSections, ship::loads::{type_load::TypeLoad, load::Load}};
-use super::{spatium::Spatium, diagram::Diagram};
+use super::diagram::Diagram;
 
 
 
