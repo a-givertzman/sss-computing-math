@@ -66,4 +66,8 @@ impl Ship {
         self.ship_measurements.length_spatium()
 
     }
+
+    pub fn number_spatiums(&self) -> i64 {
+        self.ship_measurements.number_spatiums
+    }
 }
