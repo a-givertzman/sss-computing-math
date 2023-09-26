@@ -5,14 +5,11 @@ use serde::Deserialize;
 /// - length_design_waterline - длина по конструктивной ватерлинии,
 /// - width_design_waterline - ширина по конструктивной ватерлинии,
 /// - number_spatiums - количество теоретических шпаций,
-/// - draft - осадка,
 #[derive(Deserialize, Debug)]
 pub struct ShipMeasurements {
     pub length_design_waterline: f64,
     pub width_design_waterline: f64,
     pub number_spatiums: i64,
-
-
 }
 
 impl ShipMeasurements {
