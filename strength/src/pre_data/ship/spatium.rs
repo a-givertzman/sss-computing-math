@@ -14,6 +14,4 @@ impl Spatium {
         end_value: f64,) -> Self {
         Spatium { start_coord, end_coord, start_value, end_value }
     }
-
-
 }

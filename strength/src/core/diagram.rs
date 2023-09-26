@@ -1,11 +1,9 @@
-use crate::pre_data::ship::loads::type_load::TypeLoad;
+use crate::pre_data::ship::{loads::type_load::TypeLoad, spatium::Spatium};
 
-use super::spatium::Spatium;
 
 pub struct Diagram {
     spatiums: Vec<Spatium>,
     type_load: TypeLoad,
-    
 }
 
 

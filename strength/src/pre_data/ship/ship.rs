@@ -1,7 +1,6 @@
 use log::{debug, warn};
 use serde::Deserialize;
-use crate::equivalent_beam::system_of_units::Tons;
-use crate::pre_data::json::JSON;
+use crate::{pre_data::json::JSON, core::system_of_units::Tons};
 use super::ship_measurements::ShipMeasurements;
 
 

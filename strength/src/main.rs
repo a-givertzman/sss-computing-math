@@ -1,5 +1,6 @@
 mod equivalent_beam;
 mod pre_data;
+mod core;
 use pre_data::{cross_section_properties::cross_sections::CrossSections, ship::{ship::Ship, loads::lightweight::lightweight::Lightweight}};
 use std::env;
 
