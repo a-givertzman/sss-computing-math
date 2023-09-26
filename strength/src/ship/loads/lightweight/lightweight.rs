@@ -44,7 +44,7 @@ impl Lightweight {
                 let mut current_coord = ship.coord_stern() + ship.length_spatium() / 2.0;
                 while current_coord <= (ship.coord_nose() - ship.length_spatium() / 2.0) {
                     let spatium = self.spatium(current_coord, &ship);
-                    debug!("{:?}", spatium);
+                    debug!("Lightweight.lightweight_intensity(): \n {:#?}", spatium);
                     spatiums.push(spatium);
                     current_coord += ship.length_spatium();
                 }
