@@ -18,15 +18,8 @@ impl EquBeam {
     pub fn output(&self, type_output: TypeOutput) -> Result<Output, String> {
         match &self.load {
             Ok(load) => {
-                match load.spatiums(type_output) {
-                    Ok(spatiums) => {
-                        Ok(Output::new(spatiums, type_output))
-                    },
-                    Err(err) => {
-                        warn!("EquBeam::spatiums() | error: {:?}.", err);
-                        return Err(err.to_string());
-                    }
-                }
+                let spatiums = load.spatiums(type_output);
+                Ok(Output::new(spatiums, type_output))
             },
             Err(err) => {
                 warn!("EquBeam::spatiums() | error: {:?}.", err);
