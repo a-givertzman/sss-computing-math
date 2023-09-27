@@ -12,7 +12,7 @@ fn main() {
     //env::set_var("RUST_BACKTRACE", "1");
     env::set_var("RUST_BACKTRACE", "full");
     env_logger::init();   
-    let lightweight = Lightweight::from_json_file("./pre_data/lightweight.json".to_string()).unwrap();
+    let lightweight = Lightweight::from_json_file("./pre_data/data.json".to_string()).unwrap();
     lightweight.lightweight_intensity();
 
 }

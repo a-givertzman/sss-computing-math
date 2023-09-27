@@ -1,6 +1,7 @@
 use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
+#[serde(from = "f64")]
 pub struct Newton(pub f64);
 
 #[derive(Deserialize, Debug)]
