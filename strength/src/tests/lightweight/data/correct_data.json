@@ -7,7 +7,7 @@
             "width_design_waterline": 15.2
         },
         "ship_name": "Сухогруз ТКЗ",
-        "completeness_coefficient": 0.65,
+        "completeness_coefficient": 0.8,
         "max_displacement_tonnage": 5448,
         "draft": 3.5
     }

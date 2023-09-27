@@ -4,7 +4,7 @@ mod tests {
 
     #[test]
     fn create_lightweight_from_json_file_successfully() {
-        let lightweight = Lightweight::from_json_file("./src/tests/lightweight/data/correct_load.json".to_string()).unwrap();
+        let lightweight = Lightweight::from_json_file("./src/tests/lightweight/data/correct_data.json".to_string()).unwrap();
         let weight = Newton::from(1750 as f64);
         assert_eq!(lightweight.lightweight.0, weight.0);
     }
@@ -24,7 +24,7 @@ mod tests {
     }
     #[test]
     fn test_count_spatiums() {
-        let lightweight = Lightweight::from_json_file("./src/tests/lightweight/data/data.json".to_string()).unwrap();
+        let lightweight = Lightweight::from_json_file("./src/tests/lightweight/data/correct_data.json".to_string()).unwrap();
         let spatiums = lightweight.lightweight_intensity().unwrap();
         let ship = lightweight.ship;
         assert_eq!(spatiums.len(), ship.number_spatiums() as usize);
@@ -32,11 +32,12 @@ mod tests {
 
     #[test]
     fn test_lightweight_intensity() {
-        let lightweight = Lightweight::from_json_file("./src/tests/lightweight/data/data.json".to_string()).unwrap();
+        let lightweight = Lightweight::from_json_file("./src/tests/lightweight/data/correct_data.json".to_string()).unwrap();
         let spatiums = lightweight.lightweight_intensity().unwrap();
         let mut weight = 0.0;
         for spatium in spatiums {
             weight += spatium.square();
+            //*println!("{:?}", spatium)
         }
         let err = {
             if weight > lightweight.lightweight.0 {
