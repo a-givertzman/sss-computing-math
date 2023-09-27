@@ -1,6 +1,6 @@
 #[derive(Debug, Clone, Copy)]
 pub enum TypeOutput {
-    LightweghtIntensity,
+    LightweightIntensity,
     DeadweightIntensity,
     DisplacementTonnageIntensity,
     BuoyantIntensity,

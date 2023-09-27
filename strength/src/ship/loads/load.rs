@@ -41,7 +41,7 @@ impl Load {
 
     pub fn spatiums(&self, type_ouput: TypeOutput) -> Result<Vec<Spatium>, String> {
         match type_ouput {
-            TypeOutput::LightweghtIntensity => {
+            TypeOutput::LightweightIntensity => {
                 self.lightweight.lightweight_intensity()
             },
             TypeOutput::DeadweightIntensity => {
