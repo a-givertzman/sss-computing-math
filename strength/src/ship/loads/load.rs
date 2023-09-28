@@ -47,10 +47,11 @@ impl Load {
             TypeOutput::DeadweightIntensity => {
                 todo!()
             },
-            TypeOutput::DisplacementTonnageIntensity => { todo!() },
+            TypeOutput::DisplacementIntensity => { todo!() },
             TypeOutput::BuoyantIntensity => todo!(),
-            TypeOutput::BendingMoment => todo!(),
+            TypeOutput::TotalLoadIntensity => todo!(),
             TypeOutput::ShearForce => todo!(),
+            TypeOutput::BendingMoment => todo!(),
             TypeOutput::Stress => todo!(),
         }
     }
