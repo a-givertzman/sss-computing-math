@@ -37,7 +37,7 @@ impl Lightweight {
             }
         }
     }
-    /// Computes the lightweight intensity by spatiums
+    /// Computes the lightweight intensity for spatiums
     pub fn lightweight_intensity(&self) -> Output {
         let mut spatiums = vec![];
         let mut current_coord = self.ship.coord_stern() + self.ship.length_spatium() / 2.0;
