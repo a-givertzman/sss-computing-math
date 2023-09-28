@@ -2,9 +2,10 @@
 pub enum TypeOutput {
     LightweightIntensity,
     DeadweightIntensity,
-    DisplacementTonnageIntensity,
+    DisplacementIntensity,
     BuoyantIntensity,
-    BendingMoment,
+    TotalLoadIntensity,
     ShearForce,
+    BendingMoment,
     Stress,
 }
