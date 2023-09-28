@@ -2,7 +2,7 @@
 mod tests {
     use log::debug;
 
-    use crate::ship::loads::lightweight::lightweight::Lightweight;
+    use crate::{ship::loads::lightweight::lightweight::Lightweight, output::type_output::TypeOutput};
 
     #[test]
     fn create_lightweight_from_json_file_successfully() {
@@ -26,17 +26,25 @@ mod tests {
     #[test]
     fn test_number_spatiums() {
         let lightweight = Lightweight::from_json_file("./src/tests/units/lightweight/data/correct_data.json".to_string()).unwrap();
-        let spatiums = lightweight.lightweight_intensity();
+        let output = lightweight.lightweight_intensity();
         let ship = lightweight.ship;
-        assert_eq!(spatiums.len(), ship.number_spatiums() as usize);
+        assert_eq!(output.spatiums.len(), ship.number_spatiums() as usize);
+        assert_eq!(output.type_output, TypeOutput::LightweightIntensity);
+    }
+
+    #[test]
+    fn test_type_output() {
+        let lightweight = Lightweight::from_json_file("./src/tests/units/lightweight/data/correct_data.json".to_string()).unwrap();
+        let output = lightweight.lightweight_intensity();
+        assert_eq!(output.type_output, TypeOutput::LightweightIntensity);
     }
 
     #[test]
     fn test_lightweight() {
         let lightweight = Lightweight::from_json_file("./src/tests/units/lightweight/data/correct_data.json".to_string()).unwrap();
-        let spatiums = lightweight.lightweight_intensity();
+        let output = lightweight.lightweight_intensity();
         let mut weight = 0.0;
-        for spatium in spatiums {
+        for spatium in output.spatiums {
             weight += spatium.square();
             //println!("{:?}", spatium)
         }
