@@ -4,8 +4,8 @@ use super::type_output::TypeOutput;
 
 
 pub struct Output {
-    spatiums: Vec<Spatium>,
-    type_output: TypeOutput,
+    pub spatiums: Vec<Spatium>,
+    pub type_output: TypeOutput,
 }
 
 

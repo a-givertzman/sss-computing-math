@@ -1,6 +1,6 @@
 use log::{warn, debug};
 use serde::Deserialize;
-use crate::{core::{system_of_units::Newton, json::JSON}, ship::{ship::Ship, spatium::Spatium}};
+use crate::{core::{system_of_units::Newton, json::JSON}, ship::{ship::Ship, spatium::Spatium}, output::{output::Output, type_output::TypeOutput}};
 
 
 /// Lightweight - the weight of the ship without cargo, fuel, lubricating oil, ballast water,
@@ -38,7 +38,7 @@ impl Lightweight {
         }
     }
     /// Computes the lightweight intensity by spatiums
-    pub fn lightweight_intensity(&self) -> Vec<Spatium> {
+    pub fn lightweight_intensity(&self) -> Output {
         let mut spatiums = vec![];
         let mut current_coord = self.ship.coord_stern() + self.ship.length_spatium() / 2.0;
         while current_coord <= (self.ship.coord_nose() - self.ship.length_spatium() / 2.0) {
@@ -47,7 +47,7 @@ impl Lightweight {
             current_coord += self.ship.length_spatium();
         }
         debug!("Lightweight.lightweight_intensity() | Lightweight intensity hase been computed.");
-        spatiums
+        Output::new(spatiums, TypeOutput::LightweightIntensity)
 
     }
 
