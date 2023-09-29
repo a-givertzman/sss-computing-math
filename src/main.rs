@@ -18,19 +18,22 @@ fn main() {
 
 }
 
-// Solution::new(
-//     EquBeam::new(
+// Solution{
+//     EquBeam{
 //         CrossSections::from_csv_file(),
-//         BendingMoment::new(
-//             SheareForce::new(
-//                 TotalShipLoad::new(
-//                     BouyanLoad::new(Ship::from_json_file()),
-//                     Displacment::new(
-//                         Deadweight::from_json_file(),
-//                         Lightweight::from_json_file()
-//                     )
-//                 )
-//             )
-//         )
-//     )
-// ).soleve();
+//         BendingMoment{
+//             SheareForce{
+//                 TotalShipLoad {
+//                     BouyanLoad{
+//                         Ship::from_file(file_path),
+//                         BonjeanScale::from_file(file_path)
+//                     },
+//                     Displacment{
+//                         Deadweight::from_json_file(file_path),
+//                         Lightweight::from_json_file(file_path)
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
