@@ -2,9 +2,10 @@
 mod tests {
     use std::{sync::Once, env};
     use log::debug;
-    static INIT: Once = Once::new();
     use crate::strength::{ship::loads::lightweight::lightweight::Lightweight, output::type_output::TypeOutput};
 
+
+    static INIT: Once = Once::new();
 
     fn call_once() {
         INIT.call_once(|| {
