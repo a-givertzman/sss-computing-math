@@ -1,4 +1,4 @@
-use crate::ship::spatium::Spatium;
+use crate::strength::ship::spatium::Spatium;
 
 use super::type_output::TypeOutput;
 

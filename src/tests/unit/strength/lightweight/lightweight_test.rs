@@ -2,7 +2,7 @@
 mod tests {
     use log::debug;
 
-    use crate::{ship::loads::lightweight::lightweight::Lightweight, output::type_output::TypeOutput};
+    use crate::strength::{ship::loads::lightweight::lightweight::Lightweight, output::type_output::TypeOutput};
 
     #[test]
     fn create_lightweight_from_json_file_successfully() {

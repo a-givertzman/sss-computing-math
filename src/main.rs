@@ -1,11 +1,11 @@
-mod equivalent_beam;
-mod ship;
+mod strength;
 mod core;
-mod output;
 mod tests;
 use std::env;
 
-use ship::loads::lightweight::lightweight::Lightweight;
+use strength::ship::loads::lightweight::lightweight::Lightweight;
+
+
 
 fn main() {
     env::set_var("RUST_LOG", "debug");

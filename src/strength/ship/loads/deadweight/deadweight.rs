@@ -1,7 +1,9 @@
 use log::{debug, warn};
 use serde::Deserialize;
 
-use crate::{core::json::JSON, ship::{spatium::Spatium, ship::Ship}};
+
+use crate::{core::json::JSON, strength::ship::{ship::Ship, spatium::Spatium}};
+
 use super::force::Force;
 
 

@@ -1,6 +1,8 @@
 use log::{warn, debug};
 use serde::Deserialize;
-use crate::{core::{system_of_units::Newton, json::JSON}, ship::{ship::Ship, spatium::Spatium}, output::{output::Output, type_output::TypeOutput}};
+
+use crate::{core::{system_of_units::Newton, json::JSON}, strength::{ship::{ship::Ship, spatium::Spatium}, output::{output::Output, type_output::TypeOutput}}};
+
 
 
 /// Lightweight - the weight of the ship without cargo, fuel, lubricating oil, ballast water,
