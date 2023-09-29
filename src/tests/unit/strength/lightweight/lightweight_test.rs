@@ -40,7 +40,7 @@ mod tests {
     }
 
     #[test]
-    fn test_lightweight() {
+    fn test_lightweight_intensity() {
         let lightweight = Lightweight::from_json_file("./src/tests/unit/strength/lightweight/data/correct_data.json".to_string()).unwrap();
         let output = lightweight.lightweight_intensity();
         let mut weight = 0.0;
