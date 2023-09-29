@@ -6,26 +6,26 @@ mod tests {
 
     #[test]
     fn create_lightweight_from_json_file_successfully() {
-        let lightweight = Lightweight::from_json_file("./src/tests/units/lightweight/data/correct_data.json".to_string());
+        let lightweight = Lightweight::from_json_file("./src/tests/unit/strength/lightweight/data/correct_data.json".to_string());
         assert!(lightweight.is_ok());
     }
 
     #[test]
     fn create_lightweight_from_json_file_invalid_type() {
-        let lightweight = Lightweight::from_json_file("./src/tests/units/lightweight/data/invalid_type.json".to_string());
+        let lightweight = Lightweight::from_json_file("./src/tests/unit/strength/lightweight/data/invalid_type.json".to_string());
         assert!(lightweight.is_err());
         assert!(lightweight.unwrap_err().contains("invalid type"));
     }
 
     #[test]
     fn create_lightweight_from_json_file_missing_field() {
-        let lightweight = Lightweight::from_json_file("./src/tests/units/lightweight/data/empty_field.json".to_string());
+        let lightweight = Lightweight::from_json_file("./src/tests/unit/strength/lightweight/data/empty_field.json".to_string());
         assert!(lightweight.is_err());
         assert!(lightweight.unwrap_err().contains("missing field `lightweight"));
     }
     #[test]
     fn test_number_spatiums() {
-        let lightweight = Lightweight::from_json_file("./src/tests/units/lightweight/data/correct_data.json".to_string()).unwrap();
+        let lightweight = Lightweight::from_json_file("./src/tests/unit/strength/lightweight/data/correct_data.json".to_string()).unwrap();
         let output = lightweight.lightweight_intensity();
         let ship = lightweight.ship;
         assert_eq!(output.spatiums.len(), ship.number_spatiums() as usize);
@@ -34,14 +34,14 @@ mod tests {
 
     #[test]
     fn test_type_output() {
-        let lightweight = Lightweight::from_json_file("./src/tests/units/lightweight/data/correct_data.json".to_string()).unwrap();
+        let lightweight = Lightweight::from_json_file("./src/tests/unit/strength/lightweight/data/correct_data.json".to_string()).unwrap();
         let output = lightweight.lightweight_intensity();
         assert_eq!(output.type_output, TypeOutput::LightweightIntensity);
     }
 
     #[test]
     fn test_lightweight() {
-        let lightweight = Lightweight::from_json_file("./src/tests/units/lightweight/data/correct_data.json".to_string()).unwrap();
+        let lightweight = Lightweight::from_json_file("./src/tests/unit/strength/lightweight/data/correct_data.json".to_string()).unwrap();
         let output = lightweight.lightweight_intensity();
         let mut weight = 0.0;
         for spatium in output.spatiums {
