@@ -16,12 +16,12 @@ impl CSV {
 
     pub fn parser(&self) -> Result<Reader<File>, CSVError> {
         match Reader::from_path(&self.file_path) {
-            Ok(reader) => {
-                trace!("reader: {:?}", reader);
-                Ok(reader)
+            Ok(parser) => {
+                trace!("parser: {:?}", parser);
+                Ok(parser)
             },
             Err(err) => {
-                warn!("CSV.run | error: {:?}",err);
+                warn!("CSV.parser() | error: {:?}",err);
                 Err(err)
             }
         }
