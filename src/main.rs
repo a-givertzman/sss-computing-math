@@ -1,6 +1,7 @@
 mod strength;
 mod core;
 mod tests;
+mod cross_section_properties;
 use std::env;
 
 use strength::ship::loads::lightweight::lightweight::Lightweight;
