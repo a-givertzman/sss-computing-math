@@ -65,7 +65,6 @@ mod tests {
         let mut weight = 0.0;
         for spatium in output.spatiums {
             weight += spatium.square();
-            //println!("{:?}", spatium)
         }
         let err = {
             if weight > lightweight.lightweight.0 {
