@@ -48,7 +48,7 @@ impl Lightweight {
             spatiums.push(spatium);
             current_coord += self.ship.length_spatium();
         }
-        debug!("Lightweight.lightweight_intensity() | Lightweight intensity hase been computed.");
+        debug!("Lightweight.lightweight_intensity() | Lightweight intensity hase been computed successfully.");
         Output::new(spatiums, TypeOutput::LightweightIntensity)
 
     }
