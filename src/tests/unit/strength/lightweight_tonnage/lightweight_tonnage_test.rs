@@ -46,7 +46,7 @@ mod tests {
         let lightweight = LightweightTonnage::from_json_file("./src/tests/unit/strength/lightweight_tonnage/data/correct_data.json".to_string()).unwrap();
         let output = lightweight.lightweight_tonnage_intensity();
         let ship = lightweight.ship;
-        assert_eq!(output.spatiums.len() - 2, ship.number_spatiums() as usize);
+        assert_eq!(output.spatiums.len(), ship.number_spatiums() as usize);
         assert_eq!(output.type_output, TypeOutput::LightweightTonnageIntensity);
     }
 
