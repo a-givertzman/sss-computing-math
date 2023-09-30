@@ -1,5 +1,5 @@
 {
-    "lightweight": "invalid_type",
+    "lightweight_tonnage": "invalid_type",
     "ship": {
         "ship_measurements": {
             "length_design_waterline": 125,

@@ -49,7 +49,7 @@ impl LightweightTonnage {
             current_coord += self.ship.length_spatium();
         }
         debug!("LightweightTonnage.lightweight_intensity() | Lightweight Tonnage intensity hase been computed successfully.");
-        Output::new(spatiums, TypeOutput::LightweightIntensity)
+        Output::new(spatiums, TypeOutput::LightweightTonnageIntensity)
 
     }
 
