@@ -14,7 +14,8 @@ fn main() {
     env::set_var("RUST_BACKTRACE", "full");
     env_logger::init();
     let lightweight = LightweightTonnage::from_json_file("./input_data/data.json".to_string()).unwrap();
-    lightweight.lightweight_tonnage_intensity();
+    let output = lightweight.lightweight_tonnage_intensity();
+    output.draw();
 
 }
 
