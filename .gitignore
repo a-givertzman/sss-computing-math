@@ -2,3 +2,7 @@ target/
 .vscode/
 Cargo.lock
 .vscode/
+
+# Added by cargo
+
+/target
