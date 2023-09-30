@@ -44,7 +44,7 @@ mod tests {
     fn test_number_spatiums() {
         call_once();
         let lightweight = LightweightTonnage::from_json_file("./src/tests/unit/strength/lightweight_tonnage/data/correct_data.json".to_string()).unwrap();
-        let output = lightweight.lightweight_intensity();
+        let output = lightweight.lightweight_tonnage_intensity();
         let ship = lightweight.ship;
         assert_eq!(output.spatiums.len(), ship.number_spatiums() as usize);
         assert_eq!(output.type_output, TypeOutput::LightweightTonnageIntensity);
@@ -54,7 +54,7 @@ mod tests {
     fn test_type_output() {
         call_once();
         let lightweight = LightweightTonnage::from_json_file("./src/tests/unit/strength/lightweight_tonnage/data/correct_data.json".to_string()).unwrap();
-        let output = lightweight.lightweight_intensity();
+        let output = lightweight.lightweight_tonnage_intensity();
         assert_eq!(output.type_output, TypeOutput::LightweightTonnageIntensity);
     }
 
@@ -62,7 +62,7 @@ mod tests {
     fn test_lightweight_intensity() {
         call_once();
         let lightweight = LightweightTonnage::from_json_file("./src/tests/unit/strength/lightweight_tonnage/data/correct_data.json".to_string()).unwrap();
-        let output = lightweight.lightweight_intensity();
+        let output = lightweight.lightweight_tonnage_intensity();
         let mut weight = 0.0;
         for spatium in output.spatiums {
             weight += spatium.square();

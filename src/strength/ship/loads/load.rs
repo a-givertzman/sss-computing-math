@@ -43,7 +43,7 @@ impl Load {
     pub fn spatiums(&self, type_ouput: TypeOutput) -> Output {
         match type_ouput {
             TypeOutput::LightweightTonnageIntensity => {
-                self.lightweight.lightweight_intensity()
+                self.lightweight.lightweight_tonnage_intensity()
             },
             TypeOutput::DeadweightIntensity => {
                 todo!()
