@@ -5,17 +5,17 @@ use crate::{core::json::JSON, strength::{ship::{ship::Ship, spatium::Spatium}, o
 
 
 
-/// Lightweight - the mass of the ship without cargo, fuel, lubricating oil, ballast water,
-/// fresh water and feed water in tanks, consumable stores, passengers and crew and their belongings.
+/// LightweightTonnage(LWT) - weight of the empty as-built ship without cargo, fuel, lubricating oil, ballast water,
+/// fresh water and feed water in tanks, consumable stores, passengers and crew and their belongings. Measured in tons
 #[derive(Deserialize, Debug)]
-pub struct Lightweight {
-    pub lightweight: f64,
+pub struct LightweightTonnage {
+    pub lightweight_tonnage: f64,
     pub ship: Ship,
 }
 
-impl Lightweight {
-    pub fn new(lightweight: f64, ship: Ship) -> Self {
-        Lightweight { lightweight, ship}
+impl LightweightTonnage {
+    pub fn new(lightweight_tonnage: f64, ship: Ship) -> Self {
+        LightweightTonnage { lightweight_tonnage, ship}
     }
 
     pub fn from_json_file(file_path: String) -> Result<Self, String> {
@@ -24,17 +24,17 @@ impl Lightweight {
             Ok(reader) => {
                 match serde_json::from_reader(reader) {
                     Ok(ship) => {
-                        debug!("Lightweight::from_json_file | Lightweght have been created from json file successfully.\n Ship:\n {:#?}", ship);
+                        debug!("LightweightTonnage::from_json_file | Lightweght have been created from json file successfully.\n Ship:\n {:#?}", ship);
                         return Ok(ship);
                     },
                     Err(err) => {
-                        warn!("Lightweight::from_json_file | error: {:?}.",err);
+                        warn!("LightweightTonnage::from_json_file | error: {:?}.",err);
                         return Err(err.to_string());
                     }
                 }
             },
             Err(err) => {
-                warn!("Lightweight::from_json_file | error: {:?}.",err);
+                warn!("LightweightTonnage::from_json_file | error: {:?}.",err);
                 return Err(err);
             }
         }
@@ -48,7 +48,7 @@ impl Lightweight {
             spatiums.push(spatium);
             current_coord += self.ship.length_spatium();
         }
-        debug!("Lightweight.lightweight_intensity() | Lightweight intensity hase been computed successfully.");
+        debug!("LightweightTonnage.lightweight_intensity() | Lightweight Tonnage intensity hase been computed successfully.");
         Output::new(spatiums, TypeOutput::LightweightIntensity)
 
     }
@@ -58,7 +58,7 @@ impl Lightweight {
         let end_coord = current_coord + self.ship.length_spatium() / 2.0;
         let start_coord = current_coord - self.ship.length_spatium() / 2.0;
         let intensity_load = |parametr: f64| {
-            ((self.lightweight / self.ship.number_spatiums() as f64) * parametr) / self.ship.length_spatium()
+            ((self.lightweight_tonnage / self.ship.number_spatiums() as f64) * parametr) / self.ship.length_spatium()
         };
         if current_coord > self.ship.coord_stern() && current_coord < (self.ship.coord_stern() + self.ship.length_design_waterline() / 3.0) {
             let parametr = a + ((b - a) * (self.ship.length_design_waterline() / 2.0 - current_coord.abs()))/(self.ship.length_design_waterline() / 3.0);
