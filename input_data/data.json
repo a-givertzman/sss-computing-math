@@ -1,9 +1,9 @@
 {
-   "deadweight": { "forces": [
+   "deadweight": [
         {"value": 68, "location": {"x": 4.5, "y": 5.6, "z": 5.6}, "length": 12},
         {"value": 68, "location": {"x": 45, "y": 5.6, "z": 5.6}, "length": 12},
         {"value": 68, "location": {"x": 58, "y": 5.6, "z": 5.6}, "length": 12},
-        {"value": 68, "location": {"x": 78, "y": 5.6, "z": 5.6}, "length": 12}]},
+        {"value": 68, "location": {"x": 78, "y": 5.6, "z": 5.6}, "length": 12}],
     "lightweight_tonnage": 1750,
     "ship": {
         "ship_measurements": {
