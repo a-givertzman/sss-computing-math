@@ -68,17 +68,17 @@ mod tests {
             weight += spatium.square();
         }
         let err = {
-            if weight > lightweight.lightweight.0 {
-                ((weight - lightweight.lightweight.0) / lightweight.lightweight.0) * 100.0
+            if weight > lightweight.lightweight {
+                ((weight - lightweight.lightweight) / lightweight.lightweight) * 100.0
 
-            } else if lightweight.lightweight.0 > weight {
-                ((lightweight.lightweight.0 - weight) / weight) * 100.0
+            } else if lightweight.lightweight > weight {
+                ((lightweight.lightweight - weight) / weight) * 100.0
             } else {
                 0.0
             }
         };
-        debug!("\nЭталонный вес корпуса корабля: {} [Ньютон]
-Вес корпуса корабля, полученный в результате численного интегрирования методом трапеций: {} [Ньютон]", lightweight.lightweight.0, weight);
+        debug!("\nЭталонный вес корпуса корабля: {} [Тонн]
+Вес корпуса корабля, полученный в результате численного интегрирования методом трапеций: {} [Тонн]", lightweight.lightweight, weight);
         debug!("Ошибка численного интегрирования интенсивности веса корпуса корабля по его длине = {} %", err);
         assert!(err < 5.0, "Error more than 5% = {}%.", err);
     }

@@ -1,20 +1,20 @@
 use log::{warn, debug};
 use serde::Deserialize;
 
-use crate::{core::{system_of_units::Newton, json::JSON}, strength::{ship::{ship::Ship, spatium::Spatium}, output::{output::Output, type_output::TypeOutput}}};
+use crate::{core::json::JSON, strength::{ship::{ship::Ship, spatium::Spatium}, output::{output::Output, type_output::TypeOutput}}};
 
 
 
-/// Lightweight - the weight of the ship without cargo, fuel, lubricating oil, ballast water,
+/// Lightweight - the mass of the ship without cargo, fuel, lubricating oil, ballast water,
 /// fresh water and feed water in tanks, consumable stores, passengers and crew and their belongings.
 #[derive(Deserialize, Debug)]
 pub struct Lightweight {
-    pub lightweight: Newton,
+    pub lightweight: f64,
     pub ship: Ship,
 }
 
 impl Lightweight {
-    pub fn new(lightweight: Newton, ship: Ship) -> Self {
+    pub fn new(lightweight: f64, ship: Ship) -> Self {
         Lightweight { lightweight, ship}
     }
 
@@ -58,7 +58,7 @@ impl Lightweight {
         let end_coord = current_coord + self.ship.length_spatium() / 2.0;
         let start_coord = current_coord - self.ship.length_spatium() / 2.0;
         let intensity_load = |parametr: f64| {
-            ((self.lightweight.0 / self.ship.number_spatiums() as f64) * parametr) / self.ship.length_spatium()
+            ((self.lightweight / self.ship.number_spatiums() as f64) * parametr) / self.ship.length_spatium()
         };
         if current_coord > self.ship.coord_stern() && current_coord < (self.ship.coord_stern() + self.ship.length_design_waterline() / 3.0) {
             let parametr = a + ((b - a) * (self.ship.length_design_waterline() / 2.0 - current_coord.abs()))/(self.ship.length_design_waterline() / 3.0);
