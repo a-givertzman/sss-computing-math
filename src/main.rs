@@ -4,7 +4,7 @@ mod tests;
 mod cross_section_properties;
 use std::env;
 
-use strength::ship::loads::lightweight_tonnage::lightweight::LightweightTonnage;
+use strength::ship::loads::lightweight_tonnage::lightweight_tonnage::LightweightTonnage;
 
 
 

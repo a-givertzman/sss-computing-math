@@ -2,7 +2,7 @@ use log::{warn, debug};
 use serde::Deserialize;
 use crate::{core::json::JSON, strength::output::{type_output::TypeOutput, output::Output}};
 
-use super::{lightweight_tonnage::lightweight::LightweightTonnage, deadweight::deadweight::Deadweight};
+use super::{lightweight_tonnage::lightweight_tonnage::LightweightTonnage, deadweight::deadweight::Deadweight};
 
 
 #[derive(Deserialize, Debug)]

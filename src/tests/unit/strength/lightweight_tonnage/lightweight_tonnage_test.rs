@@ -2,7 +2,7 @@
 mod tests {
     use std::{sync::Once, env};
     use log::debug;
-    use crate::strength::{ship::loads::lightweight_tonnage::lightweight::LightweightTonnage, output::type_output::TypeOutput};
+    use crate::strength::{ship::loads::lightweight_tonnage::lightweight_tonnage::LightweightTonnage, output::type_output::TypeOutput};
 
 
     static INIT: Once = Once::new();
