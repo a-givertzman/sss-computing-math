@@ -41,13 +41,17 @@ impl LightweightTonnage {
     }
     /// Computes the lightweight intensity for spatiums
     pub fn lightweight_tonnage_intensity(&self) -> Output {
-        let mut spatiums = vec![];
+        let ship_hasl_length = self.ship.length_design_waterline() / 2.0;
+        let spatium = Spatium::new(-ship_hasl_length, -ship_hasl_length, 0.0, 0.0);
+        let mut spatiums = vec![spatium];
         let mut current_coord = self.ship.coord_stern() + self.ship.length_spatium() / 2.0;
         while current_coord <= (self.ship.coord_nose() - self.ship.length_spatium() / 2.0) {
             let spatium = self.spatium(current_coord);
             spatiums.push(spatium);
             current_coord += self.ship.length_spatium();
         }
+        let spatium = Spatium::new(ship_hasl_length, ship_hasl_length, 0.0, 0.0);
+        spatiums.push(spatium);
         debug!("LightweightTonnage.lightweight_intensity() | Lightweight Tonnage intensity hase been computed successfully.");
         Output::new(spatiums, TypeOutput::LightweightTonnageIntensity)
 
