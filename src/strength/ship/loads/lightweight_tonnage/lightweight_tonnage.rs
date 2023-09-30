@@ -52,7 +52,7 @@ impl LightweightTonnage {
         }
         //let spatium = Spatium::new(ship_hasl_length, ship_hasl_length, 0.0, 0.0);
         //spatiums.push(spatium);
-        debug!("LightweightTonnage.lightweight_intensity() | Lightweight Tonnage intensity hase been computed successfully.");
+        debug!("LightweightTonnage.lightweight_tonnage_intensity() | Lightweight Tonnage intensity hase been computed successfully.");
         Output::new(spatiums, TypeOutput::LightweightTonnageIntensity)
 
     }
