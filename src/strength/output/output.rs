@@ -34,7 +34,7 @@ impl Output {
         let mut plot = Plot::new();
         let layout = Layout::new()
             .legend(Legend::new().font(Font::new().size(16)))
-            .title(Title::new("Lightweight intensity"));
+            .title(Title::new("Lightweight tonnage intensity"));
         plot.add_trace(trace1);
         plot.set_layout(layout);
         plot.show();
