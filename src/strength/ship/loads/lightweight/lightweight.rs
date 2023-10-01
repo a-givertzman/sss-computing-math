@@ -21,7 +21,7 @@ impl Lightweight {
     pub fn from_json_file(file_path: String) -> Result<Self, String> {
         let json = JSON::new();
         match json.from_file(file_path) {
-            Ok(object) => { Ok(object) },
+            Ok(lightweight) => { Ok(lightweight) },
             Err(err) => {
                 warn!("Lightweight::from_json_file | error: {:?}.",err);
                 return Err(err);
@@ -30,7 +30,7 @@ impl Lightweight {
         
     }
 
-    /// Computes the lightweight intensity for spatiums
+    /// Computes the lightweight intensity for a spatiums
     pub fn lightweight_intensity(&self) -> Output {
         // let ship_half_length = self.ship.length_design_waterline() / 2.0;
         // let spatium = Spatium::new(-ship_hasl_length, -ship_hasl_length, 0.0, 0.0);
