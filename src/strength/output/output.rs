@@ -21,12 +21,12 @@ impl Output {
         let mut x = vec![];
         let mut y = vec![];
         for spatiun in &self.spatiums {
-            x.push(spatiun.start_coord);
-            y.push(spatiun.start_value);
-            x.push(spatiun.end_coord);
-            y.push(spatiun.end_value);
+            x.push(spatiun.x1);
+            y.push(spatiun.f_x1);
+            x.push(spatiun.x2);
+            y.push(spatiun.f_x2);
         }
-        let step = (self.spatiums[0].end_coord - self.spatiums[0].end_coord).abs();
+        let step = (self.spatiums[0].x2 - self.spatiums[0].x1).abs();
         let trace1 = Scatter::new(x, y)
         .mode(Mode::LinesMarkers)
         .name("name")

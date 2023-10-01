@@ -5,7 +5,7 @@ use crate::{core::json::JSON, strength::{ship::{ship::Ship, spatium::Spatium}, o
 
 
 
-/// LightweightTonnage(LWT) - weight of the empty as-built ship without cargo, fuel, lubricating oil, ballast water,
+/// Lightweight - weight of the empty as-built ship without cargo, fuel, lubricating oil, ballast water,
 /// fresh water and feed water in tanks, consumable stores, passengers and crew and their belongings. Measured in tons
 #[derive(Deserialize, Debug)]
 pub struct Lightweight {

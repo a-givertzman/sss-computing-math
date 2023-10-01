@@ -1,1 +1,1 @@
-mod lightweight_tonnage;
+mod lightweight;
