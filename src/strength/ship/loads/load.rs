@@ -2,18 +2,18 @@ use log::{warn, debug};
 use serde::Deserialize;
 use crate::{core::json::JSON, strength::output::{type_output::TypeOutput, output::Output}};
 
-use super::{lightweight_tonnage::lightweight_tonnage::LightweightTonnage, deadweight::deadweight::Deadweight};
+use super::{lightweight::lightweight::Lightweight, deadweight::deadweight::Deadweight};
 
 
 #[derive(Deserialize, Debug)]
 pub struct Load {
-    lightweight: LightweightTonnage,
+    lightweight: Lightweight,
     deadweight: Deadweight
 }
 
 
 impl Load {
-    pub fn new(lightweight: LightweightTonnage, deadweight: Deadweight) -> Self {
+    pub fn new(lightweight: Lightweight, deadweight: Deadweight) -> Self {
         Load { lightweight, deadweight }
     }
 
@@ -24,8 +24,8 @@ impl Load {
 
     pub fn spatiums(&self, type_ouput: TypeOutput) -> Output {
         match type_ouput {
-            TypeOutput::LightweightTonnageIntensity => {
-                self.lightweight.lightweight_tonnage_intensity()
+            TypeOutput::LightweightIntensity => {
+                self.lightweight.lightweight_intensity()
             },
             TypeOutput::DeadweightIntensity => {
                 todo!()

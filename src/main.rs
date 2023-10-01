@@ -4,7 +4,7 @@ mod tests;
 mod cross_section_properties;
 use std::env;
 
-use strength::ship::loads::lightweight_tonnage::lightweight_tonnage::LightweightTonnage;
+use strength::ship::loads::lightweight::lightweight::Lightweight;
 
 
 
@@ -13,8 +13,8 @@ fn main() {
     //env::set_var("RUST_BACKTRACE", "1");
     env::set_var("RUST_BACKTRACE", "full");
     env_logger::init();
-    let lightweight = LightweightTonnage::from_json_file("./input_data/data.json".to_string()).unwrap();
-    let output = lightweight.lightweight_tonnage_intensity();
+    let lightweight = Lightweight::from_json_file("./input_data/data.json".to_string()).unwrap();
+    let output = lightweight.lightweight_intensity();
     output.draw();
 
 }

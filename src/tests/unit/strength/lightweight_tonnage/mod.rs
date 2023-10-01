@@ -1,1 +1,1 @@
-pub mod lightweight_tonnage_test;
+pub mod lightweight_test;

@@ -8,14 +8,14 @@ use crate::{core::json::JSON, strength::{ship::{ship::Ship, spatium::Spatium}, o
 /// LightweightTonnage(LWT) - weight of the empty as-built ship without cargo, fuel, lubricating oil, ballast water,
 /// fresh water and feed water in tanks, consumable stores, passengers and crew and their belongings. Measured in tons
 #[derive(Deserialize, Debug)]
-pub struct LightweightTonnage {
-    pub lightweight_tonnage: f64,
+pub struct Lightweight {
+    pub lightweight: f64,
     pub ship: Ship,
 }
 
-impl LightweightTonnage {
-    pub fn new(lightweight_tonnage: f64, ship: Ship) -> Self {
-        LightweightTonnage { lightweight_tonnage, ship}
+impl Lightweight {
+    pub fn new(lightweight: f64, ship: Ship) -> Self {
+        Lightweight { lightweight, ship}
     }
 
     pub fn from_json_file(file_path: String) -> Result<Self, String> {
@@ -23,7 +23,7 @@ impl LightweightTonnage {
         match json.from_file(file_path) {
             Ok(object) => { Ok(object) },
             Err(err) => {
-                warn!("LightweightTonnage::from_json_file | error: {:?}.",err);
+                warn!("Lightweight::from_json_file | error: {:?}.",err);
                 return Err(err);
             }
         }
@@ -31,7 +31,7 @@ impl LightweightTonnage {
     }
 
     /// Computes the lightweight intensity for spatiums
-    pub fn lightweight_tonnage_intensity(&self) -> Output {
+    pub fn lightweight_intensity(&self) -> Output {
         // let ship_half_length = self.ship.length_design_waterline() / 2.0;
         // let spatium = Spatium::new(-ship_hasl_length, -ship_hasl_length, 0.0, 0.0);
         let mut spatiums = vec![];
@@ -43,8 +43,8 @@ impl LightweightTonnage {
         }
         //let spatium = Spatium::new(ship_hasl_length, ship_hasl_length, 0.0, 0.0);
         //spatiums.push(spatium);
-        debug!("LightweightTonnage.lightweight_tonnage_intensity() | Lightweight Tonnage intensity hase been computed successfully.");
-        Output::new(spatiums, TypeOutput::LightweightTonnageIntensity)
+        debug!("Lightweight.lightweight_intensity() | Lightweight intensity hase been computed successfully.");
+        Output::new(spatiums, TypeOutput::LightweightIntensity)
 
     }
 
@@ -53,7 +53,7 @@ impl LightweightTonnage {
         let end_coord = current_coord + self.ship.length_spatium() / 2.0;
         let start_coord = current_coord - self.ship.length_spatium() / 2.0;
         let intensity_load = |parametr: f64| {
-            ((self.lightweight_tonnage / self.ship.number_spatiums() as f64) * parametr) / self.ship.length_spatium()
+            ((self.lightweight / self.ship.number_spatiums() as f64) * parametr) / self.ship.length_spatium()
         };
         if current_coord > self.ship.coord_stern() && current_coord < (self.ship.coord_stern() + self.ship.length_design_waterline() / 3.0) {
             let parametr = a + ((b - a) * (self.ship.length_design_waterline() / 2.0 - current_coord.abs()))/(self.ship.length_design_waterline() / 3.0);
