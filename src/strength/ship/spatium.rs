@@ -10,9 +10,9 @@ pub struct Spatium {
 impl Spatium {
     pub fn new(x1: f64,
         x2: f64,
-        y1: f64,
-        y2: f64,) -> Self {
-        Spatium { x1, x2, f_x1: y1, f_x2: y2 }
+        f_x1: f64,
+        f_x2: f64,) -> Self {
+        Spatium { x1, x2, f_x1, f_x2 }
     }
 
     pub fn square(&self) -> f64 {

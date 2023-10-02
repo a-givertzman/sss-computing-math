@@ -27,7 +27,6 @@ impl Lightweight {
                 return Err(err);
             }
         }
-        
     }
 
     /// Computes the lightweight intensity for a spatiums
