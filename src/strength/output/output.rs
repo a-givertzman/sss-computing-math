@@ -26,15 +26,14 @@ impl Output {
             x.push(spatiun.x2);
             y.push(spatiun.f_x2);
         }
-        let step = (self.spatiums[0].x2 - self.spatiums[0].x1).abs();
         let trace1 = Scatter::new(x, y)
         .mode(Mode::LinesMarkers)
         .name("name")
         .line(Line::new().shape(LineShape::Linear));
         let mut plot = Plot::new();
         let layout = Layout::new()
-            .y_axis(Axis::new().range_mode(RangeMode::ToZero).dtick(1.0))
-            .x_axis(Axis::new().dtick(step))
+            .y_axis(Axis::new().range_mode(RangeMode::ToZero).dtick(2.0))
+            .x_axis(Axis::new().dtick(5.0))
             .legend(Legend::new().font(Font::new().size(16)))
             .title(Title::new("Lightweight intensity"));
         plot.add_trace(trace1);
