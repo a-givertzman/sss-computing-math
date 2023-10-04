@@ -1,6 +1,6 @@
 use log::{debug, warn};
 use serde::Deserialize;
-use crate::core::{system_of_units::Tons, json::JSON};
+use crate::core::{system_of_units::Tons, json_file::JsonFile};
 
 use super::ship_measurements::ShipMeasurements;
 
@@ -26,8 +26,8 @@ impl Ship {
     }
 
     pub fn from_json_file(file_path: String) -> Result<Self, String> {
-        let json = JSON::new();
-        match json.from_file(file_path) {
+        let json = JsonFile::new();
+        match json.content(file_path) {
             Ok(object) => { Ok(object) },
             Err(err) => {
                 warn!("Ship::from_json_file | error: {:?}.",err);

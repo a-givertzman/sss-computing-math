@@ -1,6 +1,6 @@
 use log::{warn, debug};
 use serde::Deserialize;
-use crate::{core::json::JSON, strength::output::{type_output::TypeOutput, output::Output}};
+use crate::{core::json_file::JsonFile, strength::output::{type_output::TypeOutput, output::Output}};
 
 use super::{lightweight::lightweight::Lightweight, deadweight::deadweight::Deadweight};
 

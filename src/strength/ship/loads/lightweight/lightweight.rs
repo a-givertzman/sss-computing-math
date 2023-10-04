@@ -1,7 +1,7 @@
 use log::{warn, debug};
 use serde::Deserialize;
 
-use crate::{core::json::JSON, strength::{ship::{ship::Ship, spatium::Spatium}, output::{output::Output, type_output::TypeOutput}}};
+use crate::{core::json_file::JsonFile, strength::{ship::{ship::Ship, spatium::Spatium}, output::{output::Output, type_output::TypeOutput}}};
 
 
 
@@ -19,8 +19,8 @@ impl Lightweight {
     }
 
     pub fn from_json_file(file_path: String) -> Result<Self, String> {
-        let json = JSON::new();
-        match json.from_file(file_path) {
+        let json = JsonFile::new();
+        match json.content(file_path) {
             Ok(lightweight) => { Ok(lightweight) },
             Err(err) => {
                 warn!("Lightweight::from_json_file | error: {:?}.",err);
