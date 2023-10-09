@@ -9,7 +9,7 @@ mod tests {
 
     fn call_once() {
         INIT.call_once(|| {
-                env::set_var("RUST_LOG", "debug");  // off / error / warn / info / debug / trace
+                env::set_var("RUST_LOG", "off");  // off / error / warn / info / debug / trace
                 // env::set_var("RUST_BACKTRACE", "1");
                 env::set_var("RUST_BACKTRACE", "full");
                 env_logger::init();
@@ -77,8 +77,8 @@ mod tests {
                 0.0
             }
         };
-        debug!("\nЭталонный вес корпуса корабля: {} [Тонн]
-Вес корпуса корабля, полученный в результате численного интегрирования методом трапеций: {} [Тонн]", lightweight.lightweight, weight);
+        debug!("\nЭталонный вес корпуса корабля(Lightweight tonnage): {} [Тонн]
+Вес корпуса корабля(Lightweight tonnage), полученный в результате численного интегрирования методом трапеций: {} [Тонн]", lightweight.lightweight, weight);
         debug!("Ошибка численного интегрирования интенсивности веса корпуса корабля по его длине = {} %", err);
         assert!(err < 5.0, "Error more than 5% = {}%.", err);
     }

@@ -5,8 +5,8 @@ use crate::{core::json::JSON, strength::{ship::{ship::Ship, spatium::Spatium}, o
 
 
 
-/// Lightweight - the mass of the ship without cargo, fuel, lubricating oil, ballast water,
-/// fresh water and feed water in tanks, consumable stores, passengers and crew and their belongings.
+/// Lightweight - weight of the empty as-built ship without cargo, fuel, lubricating oil, ballast water,
+/// fresh water and feed water in tanks, consumable stores, passengers and crew and their belongings. Measured in tons.
 #[derive(Deserialize, Debug)]
 pub struct Lightweight {
     pub lightweight: f64,
@@ -19,28 +19,20 @@ impl Lightweight {
     }
 
     pub fn from_json_file(file_path: String) -> Result<Self, String> {
-        let json = JSON::new(file_path);
-        match json.reader() {
-            Ok(reader) => {
-                match serde_json::from_reader(reader) {
-                    Ok(ship) => {
-                        debug!("Lightweight::from_json_file | Lightweght have been created from json file successfully.\n Ship:\n {:#?}", ship);
-                        return Ok(ship);
-                    },
-                    Err(err) => {
-                        warn!("Lightweight::from_json_file | error: {:?}.",err);
-                        return Err(err.to_string());
-                    }
-                }
-            },
+        let json = JSON::new();
+        match json.from_file(file_path) {
+            Ok(lightweight) => { Ok(lightweight) },
             Err(err) => {
                 warn!("Lightweight::from_json_file | error: {:?}.",err);
                 return Err(err);
             }
         }
     }
-    /// Computes the lightweight intensity for spatiums
+
+    /// Computes the lightweight intensity for a spatiums
     pub fn lightweight_intensity(&self) -> Output {
+        // let ship_half_length = self.ship.length_design_waterline() / 2.0;
+        // let spatium = Spatium::new(-ship_hasl_length, -ship_hasl_length, 0.0, 0.0);
         let mut spatiums = vec![];
         let mut current_coord = self.ship.coord_stern() + self.ship.length_spatium() / 2.0;
         while current_coord <= (self.ship.coord_nose() - self.ship.length_spatium() / 2.0) {
@@ -48,6 +40,8 @@ impl Lightweight {
             spatiums.push(spatium);
             current_coord += self.ship.length_spatium();
         }
+        //let spatium = Spatium::new(ship_hasl_length, ship_hasl_length, 0.0, 0.0);
+        //spatiums.push(spatium);
         debug!("Lightweight.lightweight_intensity() | Lightweight intensity hase been computed successfully.");
         Output::new(spatiums, TypeOutput::LightweightIntensity)
 

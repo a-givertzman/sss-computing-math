@@ -26,20 +26,9 @@ impl Ship {
     }
 
     pub fn from_json_file(file_path: String) -> Result<Self, String> {
-        let json = JSON::new(file_path);
-        match json.reader() {
-            Ok(reader) => {
-                match serde_json::from_reader(reader) {
-                    Ok(ship) => {
-                        debug!("Ship::from_json_file | Ship have been created from json file successfully.\n Ship:\n {:#?}", ship);
-                        return Ok(ship)
-                    },
-                    Err(err) => {
-                        warn!("Ship::from_json_file | error: {:?}.",err);
-                        return Err(err.to_string());
-                    }
-                }
-            },
+        let json = JSON::new();
+        match json.from_file(file_path) {
+            Ok(object) => { Ok(object) },
             Err(err) => {
                 warn!("Ship::from_json_file | error: {:?}.",err);
                 return Err(err);
