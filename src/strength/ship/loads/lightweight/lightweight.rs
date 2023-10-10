@@ -46,7 +46,7 @@ impl Lightweight {
         // let spatium = Spatium::new(-ship_hasl_length, -ship_hasl_length, 0.0, 0.0);
         let mut spatiums = vec![];
         let mut current_coord = self.ship.coord_stern() + self.ship.length_spatium() / 2.0;
-        while current_coord <= (self.ship.coord_nose() - self.ship.length_spatium() / 2.0) {
+        for _ in 0..self.ship.number_spatiums() {
             let spatium = self.spatium(current_coord);
             spatiums.push(spatium);
             current_coord += self.ship.length_spatium();
