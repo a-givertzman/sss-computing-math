@@ -19,9 +19,20 @@ impl Lightweight {
     }
 
     pub fn from_json_file(file_path: String) -> Result<Self, String> {
-        let json = JsonFile::new();
-        match json.content(file_path) {
-            Ok(lightweight) => { Ok(lightweight) },
+        let json = JsonFile::new(file_path);
+        match json.content() {
+            Ok(content) => {
+                match serde_json::from_reader(content) {
+                    Ok(lightweight) => {
+                        debug!("Lightweight::from_json_file | Lightweight has been created sucessfuly. {:?}", lightweight);
+                        Ok(lightweight)
+                    },
+                    Err(err) => {
+                        warn!("Lightweight::from_json_file | error: {:?}.",err);
+                        return Err(err.to_string());
+                    }
+                }
+            },
             Err(err) => {
                 warn!("Lightweight::from_json_file | error: {:?}.",err);
                 return Err(err);
