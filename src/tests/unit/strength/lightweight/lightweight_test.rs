@@ -65,16 +65,16 @@ mod tests {
         call_once();
         let lightweight = Lightweight::from_json_file("./src/tests/unit/strength/lightweight/data/correct_data.json".to_string()).unwrap();
         let output = lightweight.lightweight_intensity();
-        let mut weight = 0.0;
+        let mut computed_weight = 0.0;
         for spatium in output.spatiums {
-            weight += spatium.square();
+            computed_weight += spatium.square();
         }
         let err = {
-            if weight > lightweight.lightweight {
-                ((weight - lightweight.lightweight) / lightweight.lightweight) * 100.0
+            if computed_weight > lightweight.lightweight {
+                ((computed_weight - lightweight.lightweight) / lightweight.lightweight) * 100.0
 
-            } else if lightweight.lightweight > weight {
-                ((lightweight.lightweight - weight) / weight) * 100.0
+            } else if lightweight.lightweight > computed_weight {
+                ((lightweight.lightweight - computed_weight) / computed_weight) * 100.0
             } else {
                 0.0
             }
