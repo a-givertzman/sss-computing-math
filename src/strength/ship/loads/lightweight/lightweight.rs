@@ -18,6 +18,8 @@ impl Lightweight {
         Lightweight { lightweight, ship}
     }
 
+    ///
+    /// Create an object from json file.
     pub fn from_json_file(file_path: String) -> Result<Self, String> {
         let json = JsonFile::new(file_path);
         match json.content() {
@@ -39,7 +41,7 @@ impl Lightweight {
             }
         }
     }
-
+    ///
     /// Computes the lightweight intensity for a spatiums
     pub fn lightweight_intensity(&self) -> Output {
         // let ship_half_length = self.ship.length_design_waterline() / 2.0;
