@@ -5,7 +5,7 @@ use crate::strength::ship::spatium::Spatium;
 use super::type_output::TypeOutput;
 
 ///
-/// Computational results for sptiums.
+/// Computational results for spatiums.
 pub struct Output {
     pub spatiums: Vec<Spatium>,
     pub type_output: TypeOutput,
