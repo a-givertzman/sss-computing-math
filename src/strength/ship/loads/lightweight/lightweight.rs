@@ -42,7 +42,7 @@ impl Lightweight {
         }
     }
     ///
-    /// Computes the lightweight intensity for a spatiums
+    /// Computes the lightweight intensity for spatiums.
     pub fn lightweight_intensity(&self) -> Output {
         // let ship_half_length = self.ship.length_design_waterline() / 2.0;
         // let spatium = Spatium::new(-ship_hasl_length, -ship_hasl_length, 0.0, 0.0);
@@ -60,6 +60,8 @@ impl Lightweight {
 
     }
 
+    ///
+    /// Computes the lightweight intensity for a spatium.
     fn spatium(&self, current_coord: f64) -> Spatium {
         let (a, b, c) = self.lightweight_intensity_parameters();
         let end_coord = current_coord + self.ship.length_spatium() / 2.0;
@@ -81,7 +83,8 @@ impl Lightweight {
         }
     }
 
-
+    ///
+    /// Lightweight spread curve parameters.
     fn lightweight_intensity_parameters(&self) -> (f64, f64, f64) {
         if self.ship.completeness_coefficient  <= 0.7 {
             (0.65, 1.20, 0.57)
