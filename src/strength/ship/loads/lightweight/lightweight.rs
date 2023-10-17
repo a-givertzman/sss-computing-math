@@ -14,6 +14,9 @@ pub struct Lightweight {
 }
 
 impl Lightweight {
+
+    ///
+    /// Create a new object.
     pub fn new(lightweight: f64, ship: Ship) -> Self {
         Lightweight { lightweight, ship}
     }
@@ -84,7 +87,7 @@ impl Lightweight {
     }
 
     ///
-    /// Lightweight spread curve parameters.
+    /// Ship hull weight spread curve parameters.
     fn lightweight_intensity_parameters(&self) -> (f64, f64, f64) {
         if self.ship.completeness_coefficient  <= 0.7 {
             (0.65, 1.20, 0.57)
