@@ -4,7 +4,8 @@ use crate::strength::ship::spatium::Spatium;
 
 use super::type_output::TypeOutput;
 
-
+///
+/// Contains computing results for spatiums.
 pub struct Output {
     pub spatiums: Vec<Spatium>,
     pub type_output: TypeOutput,
@@ -12,11 +13,16 @@ pub struct Output {
 
 
 impl Output {
+
+    ///
+    /// Create a new object.
     pub fn new(spatiums: Vec<Spatium>, type_output: TypeOutput) -> Self {
         Output { spatiums, type_output }
 
     }
 
+    ///
+    /// Draw computing results on the plotter.
     pub fn draw(&self) {
         let mut x: Vec<f64> = vec![];
         let mut y = vec![];
