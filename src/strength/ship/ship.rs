@@ -1,6 +1,6 @@
 use log::{debug, warn};
 use serde::Deserialize;
-use crate::core::{system_of_units::Tons, json_file::JsonFile};
+use crate::core::{json_file::JsonFile, ton::Ton};
 
 use super::ship_measurements::ShipMeasurements;
 
@@ -13,7 +13,7 @@ use super::ship_measurements::ShipMeasurements;
 pub struct Ship {
     pub ship_measurements: ShipMeasurements,
     pub completeness_coefficient: f64,
-    pub max_displacement_tonnage: Tons,
+    pub max_displacement_tonnage: Ton,
 
 }
 
@@ -21,7 +21,7 @@ pub struct Ship {
 impl Ship {
     pub fn new(ship_measurements: ShipMeasurements,
         completeness_coefficient: f64,
-        max_displacement_tonnage: Tons,) -> Self {
+        max_displacement_tonnage: Ton,) -> Self {
         Ship { ship_measurements, completeness_coefficient, max_displacement_tonnage }
     }
 

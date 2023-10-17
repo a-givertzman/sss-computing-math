@@ -1,5 +1,5 @@
 use serde::Deserialize;
-use crate::core::{system_of_units::Newton, location::Location};
+use crate::core::{newton::Newton, location::Location};
 
 #[derive(Deserialize, Debug)]
 pub struct Force {
