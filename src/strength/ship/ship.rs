@@ -1,10 +1,7 @@
 use log::{debug, warn};
 use serde::Deserialize;
 use crate::core::{json_file::JsonFile, ton::Ton};
-
 use super::ship_measurements::ShipMeasurements;
-
-
 
 /// Ship
 /// - completeness_coefficient - коэффициент полноты,
@@ -16,7 +13,6 @@ pub struct Ship {
     pub max_displacement_tonnage: Ton,
 
 }
-
 
 impl Ship {
     pub fn new(ship_measurements: ShipMeasurements,
