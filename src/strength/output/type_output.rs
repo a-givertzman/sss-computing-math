@@ -1,3 +1,5 @@
+///
+/// Data output type.
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum TypeOutput {
     LightweightIntensity,
