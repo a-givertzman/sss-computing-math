@@ -1,12 +1,12 @@
 use log::{warn, debug};
 use serde::Deserialize;
 
-use crate::{core::json::JSON, strength::{ship::{ship::Ship, spatium::Spatium}, output::{output::Output, type_output::TypeOutput}}};
+use crate::{core::json_file::JsonFile, strength::{ship::{ship::Ship, spatium::Spatium}, output::{output::Output, type_output::TypeOutput}}};
 
 
 
-/// Lightweight - the mass of the ship without cargo, fuel, lubricating oil, ballast water,
-/// fresh water and feed water in tanks, consumable stores, passengers and crew and their belongings.
+/// Lightweight - weight of the empty as-built ship without cargo, fuel, lubricating oil, ballast water,
+/// fresh water and feed water in tanks, consumable stores, passengers and crew and their belongings. Measured in tons.
 #[derive(Deserialize, Debug)]
 pub struct Lightweight {
     pub lightweight: f64,
@@ -14,18 +14,23 @@ pub struct Lightweight {
 }
 
 impl Lightweight {
+
+    ///
+    /// Create a new object.
     pub fn new(lightweight: f64, ship: Ship) -> Self {
         Lightweight { lightweight, ship}
     }
 
+    ///
+    /// Create an object from json file.
     pub fn from_json_file(file_path: String) -> Result<Self, String> {
-        let json = JSON::new(file_path);
-        match json.reader() {
-            Ok(reader) => {
-                match serde_json::from_reader(reader) {
-                    Ok(ship) => {
-                        debug!("Lightweight::from_json_file | Lightweght have been created from json file successfully.\n Ship:\n {:#?}", ship);
-                        return Ok(ship);
+        let json = JsonFile::new(file_path);
+        match json.content() {
+            Ok(content) => {
+                match serde_json::from_reader(content) {
+                    Ok(lightweight) => {
+                        debug!("Lightweight::from_json_file | Lightweight has been created sucessfuly. {:?}", lightweight);
+                        Ok(lightweight)
                     },
                     Err(err) => {
                         warn!("Lightweight::from_json_file | error: {:?}.",err);
@@ -39,20 +44,27 @@ impl Lightweight {
             }
         }
     }
-    /// Computes the lightweight intensity for spatiums
+    ///
+    /// Computes the lightweight intensity for spatiums.
     pub fn lightweight_intensity(&self) -> Output {
+        // let ship_half_length = self.ship.length_design_waterline() / 2.0;
+        // let spatium = Spatium::new(-ship_hasl_length, -ship_hasl_length, 0.0, 0.0);
         let mut spatiums = vec![];
         let mut current_coord = self.ship.coord_stern() + self.ship.length_spatium() / 2.0;
-        while current_coord <= (self.ship.coord_nose() - self.ship.length_spatium() / 2.0) {
+        for _ in 0..self.ship.number_spatiums() {
             let spatium = self.spatium(current_coord);
             spatiums.push(spatium);
             current_coord += self.ship.length_spatium();
         }
+        //let spatium = Spatium::new(ship_hasl_length, ship_hasl_length, 0.0, 0.0);
+        //spatiums.push(spatium);
         debug!("Lightweight.lightweight_intensity() | Lightweight intensity hase been computed successfully.");
         Output::new(spatiums, TypeOutput::LightweightIntensity)
 
     }
 
+    ///
+    /// Computes the lightweight intensity for a spatium.
     fn spatium(&self, current_coord: f64) -> Spatium {
         let (a, b, c) = self.lightweight_intensity_parameters();
         let end_coord = current_coord + self.ship.length_spatium() / 2.0;
@@ -74,12 +86,13 @@ impl Lightweight {
         }
     }
 
-
+    ///
+    /// Ship hull weight spread curve parameters.
     fn lightweight_intensity_parameters(&self) -> (f64, f64, f64) {
         if self.ship.completeness_coefficient  <= 0.7 {
-            (0.65, 1.20, 0.57)
+            (0.64, 1.20, 0.56)
         } else {
-            (0.71, 1.17, 0.6)
+            (0.72, 1.17, 0.6)
         }
     }
 }
