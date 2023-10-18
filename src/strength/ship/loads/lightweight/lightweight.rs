@@ -90,9 +90,9 @@ impl Lightweight {
     /// Ship hull weight spread curve parameters.
     fn lightweight_intensity_parameters(&self) -> (f64, f64, f64) {
         if self.ship.completeness_coefficient  <= 0.7 {
-            (0.65, 1.20, 0.57)
+            (0.64, 1.20, 0.56)
         } else {
-            (0.71, 1.17, 0.6)
+            (0.72, 1.17, 0.6)
         }
     }
 }
